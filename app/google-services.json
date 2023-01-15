@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "268743018399",
+    "firebase_url": "https://films-5a8bb-default-rtdb.firebaseio.com",
+    "project_id": "films-5a8bb",
+    "storage_bucket": "films-5a8bb.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:268743018399:android:16cb260c6d8252bbb7dfaa",
+        "android_client_info": {
+          "package_name": "com.example.films"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "268743018399-82us22qo6js0jm9tg2rh7ssgi7nptea4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCT3ddq5gqbs3wHmIwyQWPNelRxQGXUt2Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "268743018399-82us22qo6js0jm9tg2rh7ssgi7nptea4.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
