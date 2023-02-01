@@ -44,15 +44,17 @@ public class Auth extends AppCompatActivity {
         bt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                mAuth.signOut();
                 mAuth.signInWithEmailAndPassword(et1.getText().toString(), et2.getText().toString())
                         .addOnCompleteListener(Auth.this, new OnCompleteListener<AuthResult>() {
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
                                 if (task.isSuccessful()) {
-                                    // Sign in success, update UI with the signed-in user's information
-                                    Intent switcher = new Intent(Auth.this, Main.class);
-                                    startActivity(switcher);
                                     FirebaseUser user = mAuth.getCurrentUser();
+                                    Intent switcher = new Intent(Auth.this, MainActivity.class);
+                                    startActivity(switcher);
+
+
 
 
                                 } else {

@@ -3,6 +3,7 @@ package com.example.films;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -17,6 +18,10 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.core.Constants;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class Registration extends AppCompatActivity {
     private FirebaseAuth mAuth;
@@ -28,6 +33,7 @@ public class Registration extends AppCompatActivity {
         EditText et1 = (EditText) findViewById(R.id.editTextTextEmailAddress);
         EditText et2 = (EditText) findViewById(R.id.editTextTextPassword2);
         EditText et3 = (EditText) findViewById(R.id.editTextTextPassword3);
+
         mAuth = FirebaseAuth.getInstance();
         Button bt = (Button) findViewById(R.id.button2);
         bt.setOnClickListener(new View.OnClickListener() {
@@ -44,12 +50,15 @@ public class Registration extends AppCompatActivity {
                                 public void onComplete(@NonNull Task<AuthResult> task) {
                                     if (task.isSuccessful()) {
                                         Toast.makeText(Registration.this, "Успешно", Toast.LENGTH_SHORT).show();
-                                        DatabaseReference mdb = FirebaseDatabase.getInstance().getReference("User");
+                                        DatabaseReference mdb = FirebaseDatabase.getInstance().getReference();
                                         FirebaseUser user = mAuth.getCurrentUser();
-                                        User u = new User(mdb.getKey(), c, d,"0", "0", mAuth.getCurrentUser().toString());
-                                        mdb.push().setValue(u);
+                                        Date date = new Date();
+                                        SimpleDateFormat f = new SimpleDateFormat("dd-MM-yyyy");
+                                        User u = new User(mdb.getKey(), c, d,"0", "0", mAuth.getCurrentUser().toString(), f.format(date).toString());
+                                        mdb.child("Users").child(user.getUid()).setValue(u);
                                         Intent switcher = new Intent(Registration.this, Auth.class);
                                         startActivity(switcher);
+
 
                                     } else {
                                         // If sign in fails, display a message to the user.
