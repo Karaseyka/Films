@@ -9,6 +9,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 
 import com.example.films.Acc;
+import com.example.films.Groups;
 import com.example.films.R;
 import com.example.films.Search;
 
@@ -19,7 +20,7 @@ import com.example.films.Search;
 public class SectionsPagerAdapter extends FragmentPagerAdapter {
 
     @StringRes
-    private static final int[] TAB_TITLES = new int[]{R.string.tab_text_1, R.string.tab_text_2};
+    private static final int[] TAB_TITLES = new int[]{R.string.tab_text_1, R.string.tab_text_2, R.string.tab_text_3};
     private final Context mContext;
 
     public SectionsPagerAdapter(Context context, FragmentManager fm) {
@@ -36,6 +37,8 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
                 return new Acc();
             case 1:
                 return new Search();
+            case 2:
+                return new Groups();
 
         }
         return null;
@@ -49,7 +52,7 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
 
     @Override
     public int getCount() {
-        // Show 2 total pages.
-        return 2;
+        // Show 3 total pages.
+        return 3;
     }
 }
