@@ -9,6 +9,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.films.ui.main.SectionsPagerAdapter;
+
 import java.util.ArrayList;
 
 public class Adapter extends RecyclerView.Adapter<Adapter.GroupHolder> {
@@ -25,7 +27,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.GroupHolder> {
     public GroupHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
         View view = layoutInflater.inflate(R.layout.list_item, parent, false);
-        return new Adapter.GroupHolder(view);
+        return new GroupHolder(view);
     }
 
     @Override
@@ -40,12 +42,18 @@ public class Adapter extends RecyclerView.Adapter<Adapter.GroupHolder> {
         return group.size();
     }
 
-    public class GroupHolder extends RecyclerView.ViewHolder {
+    public static class GroupHolder extends RecyclerView.ViewHolder {
         TextView tv;
 
         public GroupHolder(@NonNull View itemView) {
             super(itemView);
-            tv = itemView.findViewById(R.id.textView12);
+            tv = itemView.findViewById(R.id.t);
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+
+                }
+            });
         }
     }
 }

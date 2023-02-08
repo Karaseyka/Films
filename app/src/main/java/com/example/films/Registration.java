@@ -52,28 +52,18 @@ public class Registration extends AppCompatActivity {
                                     if (task.isSuccessful()) {
                                         Toast.makeText(Registration.this, "Успешно", Toast.LENGTH_SHORT).show();
                                         DatabaseReference mdb = FirebaseDatabase.getInstance().getReference();
-
                                         FirebaseUser user = mAuth.getCurrentUser();
                                         Date date = new Date();
                                         SimpleDateFormat f = new SimpleDateFormat("dd-MM-yyyy");
                                         String gr = "MyFirstGroup";
-
-
                                         User u = new User(mdb.getKey(), c, d,"0", mAuth.getCurrentUser().toString(), f.format(date).toString());
                                         mdb.child("Users").child(user.getUid()).setValue(u);
                                         String a = mdb.child("Users").child(user.getUid()).child("Group").push().getKey();
                                         Group g = new Group(gr);
                                         mdb.child("Users").child(user.getUid()).child("Group").child(a).setValue(g);
                                         mdb.child("Group").child(a).setValue(g);
-
-
-
-
-
                                         Intent switcher = new Intent(Registration.this, Auth.class);
                                         startActivity(switcher);
-
-
                                     } else {
                                         // If sign in fails, display a message to the user.
                                         Toast.makeText(Registration.this, "Authentication failed.",

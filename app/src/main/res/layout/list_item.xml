@@ -7,7 +7,7 @@
     android:background="@drawable/bg">
 
     <TextView
-        android:id="@+id/textView12"
+        android:id="@+id/t"
         android:layout_width="252dp"
         android:layout_height="60dp"
         android:layout_marginStart="16dp"
@@ -18,5 +18,5 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="1.0" />
 </androidx.constraintlayout.widget.ConstraintLayout>

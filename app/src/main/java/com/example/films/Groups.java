@@ -1,9 +1,12 @@
 package com.example.films;
 
+import android.annotation.SuppressLint;
+import android.content.Context;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.util.Log;
@@ -44,65 +47,40 @@ public class Groups extends Fragment {
     @Override
     public void onViewCreated(View v, Bundle savedInstanceState) {
         ma = FirebaseAuth.getInstance();
-        ArrayList<String> a = new ArrayList<>();;
         mdb = FirebaseDatabase.getInstance().getReference();
 
         mdb.child("Users").child(ma.getCurrentUser().getUid()).child("Group").addListenerForSingleValueEvent(new ValueEventListener() {
+
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+                ArrayList<String> a = new ArrayList<>();
                 for (DataSnapshot postSnapshot: snapshot.getChildren()) {
-                    TextView tw = v.findViewById(R.id.textView13);
+
 
                     Group gr1 = postSnapshot.getValue(Group.class);
                     assert gr1 != null;
-                    tw.setText(gr1.name);
                     a.add(gr1.name);
 
                 }
+                RecyclerView rv = (RecyclerView) v.findViewById(R.id.recyclerview);
+                ArrayList<Group> list = new ArrayList<>();
 
-                    }
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError error) {
+                for(int i = 0; i < a.size(); i ++){
+                    Group gr = new Group(a.get(i));
+                    list.add(gr);
+                }
+                Adapter ad = new Adapter((Context) getActivity(), list);
+                rv.setAdapter(ad);
+                rv.setLayoutManager(new LinearLayoutManager((Context) getActivity()));
 
-                    }
+
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
         });
-        TextView tw = v.findViewById(R.id.textView13);
 
-        RecyclerView rv = (RecyclerView) v.findViewById(R.id.recyclerview);
-        ArrayList<Group> list = new ArrayList<>();
-        Adapter ad = new Adapter(this.getContext(), list);
-        for(int i = 0; i < a.size(); i ++){
-            Group gr = new Group(a.get(i));
-            list.add(gr);
-        }
-
-        rv.setAdapter(ad);
-
-        ad.notifyDataSetChanged();
-//        FirebaseRecyclerOptions<Group> options =
-//                new FirebaseRecyclerOptions.Builder<Group>()
-//                        .setQuery(mdb.child(), Group.class)
-//                        .build();
-//
-//        FirebaseRecyclerAdapter<Group, Group.GroupHolder> adapter = new FirebaseRecyclerAdapter<Group, Group.GroupHolder>(options) {
-//            @Override
-//            protected void onBindViewHolder(@NonNull Group.GroupHolder holder, int position, @NonNull Group model) {
-//
-//            }
-//
-//            @NonNull
-//            @Override
-//            public Group.GroupHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-//                // Create a new instance of the ViewHolder, in this case we are using a custom
-//                // layout called R.layout.message for each item
-//                View view = LayoutInflater.from(parent.getContext())
-//                        .inflate(R.layout.list_item, parent, false);
-//
-//                return new Group.GroupHolder(view);
-//            }
-//
-//
-//        };
 
     }
 }
