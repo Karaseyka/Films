@@ -7,12 +7,13 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 public class Group {
-    public String name;
+    public String name, id;
 
     public Group() {
     }
 
-    public Group(String name){
+    public Group(String name, String id){
+        this.id = id;
         this.name = name;
     }
 

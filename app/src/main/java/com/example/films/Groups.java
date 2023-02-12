@@ -35,6 +35,7 @@ import java.util.Objects;
 
 public class Groups extends Fragment {
     private DatabaseReference mdb;
+    private DatabaseReference mdb1;
     private FirebaseAuth ma;
     private FirebaseRecyclerAdapter rA;
 
@@ -48,30 +49,39 @@ public class Groups extends Fragment {
     public void onViewCreated(View v, Bundle savedInstanceState) {
         ma = FirebaseAuth.getInstance();
         mdb = FirebaseDatabase.getInstance().getReference();
+        mdb1 = FirebaseDatabase.getInstance().getReference();
 
         mdb.child("Users").child(ma.getCurrentUser().getUid()).child("Group").addListenerForSingleValueEvent(new ValueEventListener() {
 
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                ArrayList<String> a = new ArrayList<>();
+
                 for (DataSnapshot postSnapshot: snapshot.getChildren()) {
-
-
-                    Group gr1 = postSnapshot.getValue(Group.class);
+                    String gr1 = postSnapshot.getValue().toString();
                     assert gr1 != null;
-                    a.add(gr1.name);
+                    mdb1.child("Group").child(gr1).addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot bSnapshot) {
+                            ArrayList<String> a = new ArrayList<>();
+                            Group gr = bSnapshot.getValue(Group.class);
+                            RecyclerView rv = (RecyclerView) v.findViewById(R.id.recyclerview);
+                            ArrayList<Group> list = new ArrayList<>();
+                            list.add(gr);
+
+                            Adapter ad = new Adapter((Context) getActivity(), list);
+                            rv.setAdapter(ad);
+                            rv.setLayoutManager(new LinearLayoutManager((Context) getActivity()));
+                            ad.notifyDataSetChanged();
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError databaseError) {
+                            throw databaseError.toException(); // never ignore errors
+                        }
+                    });
 
                 }
-                RecyclerView rv = (RecyclerView) v.findViewById(R.id.recyclerview);
-                ArrayList<Group> list = new ArrayList<>();
 
-                for(int i = 0; i < a.size(); i ++){
-                    Group gr = new Group(a.get(i));
-                    list.add(gr);
-                }
-                Adapter ad = new Adapter((Context) getActivity(), list);
-                rv.setAdapter(ad);
-                rv.setLayoutManager(new LinearLayoutManager((Context) getActivity()));
 
 
             }

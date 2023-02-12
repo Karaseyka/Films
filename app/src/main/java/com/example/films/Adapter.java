@@ -1,6 +1,9 @@
 package com.example.films;
 
+
+
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +19,7 @@ import java.util.ArrayList;
 public class Adapter extends RecyclerView.Adapter<Adapter.GroupHolder> {
     Context context;
     ArrayList<Group> group;
+
     public Adapter(Context context, ArrayList<Group> group){
         this.context = context;
         this.group = group;
@@ -34,6 +38,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.GroupHolder> {
     public void onBindViewHolder(@NonNull GroupHolder holder, int position) {
         Group gr = group.get(position);
         holder.tv.setText(gr.name);
+        holder.tv1.setText(gr.id);
 
     }
 
@@ -43,17 +48,24 @@ public class Adapter extends RecyclerView.Adapter<Adapter.GroupHolder> {
     }
 
     public static class GroupHolder extends RecyclerView.ViewHolder {
+
         TextView tv;
+        TextView tv1;
 
         public GroupHolder(@NonNull View itemView) {
             super(itemView);
             tv = itemView.findViewById(R.id.t);
+            tv1 = itemView.findViewById(R.id.id);
+            Context context = itemView.getContext();
+
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-
+                    Intent myintent = new Intent(context, GroupActivity.class).putExtra("id", tv1.getText());
+                    context.startActivity(myintent);
                 }
             });
         }
+
     }
 }

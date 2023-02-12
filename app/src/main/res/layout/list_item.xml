@@ -3,20 +3,31 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="@drawable/bg">
+    android:layout_height="80dp">
 
     <TextView
         android:id="@+id/t"
-        android:layout_width="252dp"
+        android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:layout_marginStart="16dp"
-        android:text="MyFirstGroup"
+        android:background="@drawable/bg"
+        android:text="    MyFirstGroup"
         android:textColor="#F0EBF1"
-        android:textSize="35sp"
+        android:textSize="30sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="1.0" />
+
+    <TextView
+        android:id="@+id/id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:text="TextView"
+        android:textColor="#9B9A9C"
+        app:layout_constraintEnd_toEndOf="@+id/t"
+        app:layout_constraintHorizontal_bias="0.093"
+        app:layout_constraintStart_toStartOf="@+id/t"
+        app:layout_constraintTop_toTopOf="@+id/t" />
 </androidx.constraintlayout.widget.ConstraintLayout>

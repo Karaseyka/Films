@@ -13,6 +13,14 @@
         android:theme="@style/Theme.Films"
         tools:targetApi="31">
         <activity
+            android:name=".FilmsList"
+            android:exported="false"
+            android:theme="@style/Theme.Films.NoActionBar">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".MainActivity"
             android:exported="false"
             android:label="@string/title_activity_main"
@@ -37,6 +45,15 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
 
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".GroupActivity"
+            android:exported="false"
+            android:label="@string/title_activity_group"
+            android:theme="@style/Theme.Films.NoActionBar">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />

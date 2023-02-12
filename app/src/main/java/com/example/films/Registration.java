@@ -34,7 +34,12 @@ public class Registration extends AppCompatActivity {
         EditText et1 = (EditText) findViewById(R.id.editTextTextEmailAddress);
         EditText et2 = (EditText) findViewById(R.id.editTextTextPassword2);
         EditText et3 = (EditText) findViewById(R.id.editTextTextPassword3);
-
+        DatabaseReference mdb1 = FirebaseDatabase.getInstance().getReference();
+        mdb1.child("Film").push().setValue(new Film("Время", "https://firebasestorage.googleapis.com/v0/b/films-5a8bb.appspot.com/o/1629795-2124006.jpeg?alt=media&token=967f17a7-5352-499e-9b91-23d095baf1da", "Aboba"));
+        mdb1.child("Film").push().setValue(new Film("Во всё тяжкое", "https://firebasestorage.googleapis.com/v0/b/films-5a8bb.appspot.com/o/33340317-1124423.jpg?alt=media&token=00d18a74-97bc-4f1d-9eef-99c4ce61b616", "Aboba"));
+        mdb1.child("Film").push().setValue(new Film("1+1", "https://firebasestorage.googleapis.com/v0/b/films-5a8bb.appspot.com/o/33340317-1124423.jpg?alt=media&token=00d18a74-97bc-4f1d-9eef-99c4ce61b616", "Aboba"));
+        mdb1.child("Film").push().setValue(new Film("Титаник", "https://firebasestorage.googleapis.com/v0/b/films-5a8bb.appspot.com/o/c7e53efbe083c67fb76bb137928f1815.jpg?alt=media&token=b28a3f6a-7fad-4dd4-8654-9467348ebc8d", "Aboba"));
+        mdb1.child("Film").push().setValue(new Film("Операция Ы", "https://firebasestorage.googleapis.com/v0/b/films-5a8bb.appspot.com/o/orig.jfif?alt=media&token=c25e55e9-c6af-4bc9-abde-73a11cd1926c", "Aboba"));
         mAuth = FirebaseAuth.getInstance();
         Button bt = (Button) findViewById(R.id.button2);
         bt.setOnClickListener(new View.OnClickListener() {
@@ -55,12 +60,12 @@ public class Registration extends AppCompatActivity {
                                         FirebaseUser user = mAuth.getCurrentUser();
                                         Date date = new Date();
                                         SimpleDateFormat f = new SimpleDateFormat("dd-MM-yyyy");
-                                        String gr = "MyFirstGroup";
+                                        String gr = "   MyFirstGroup";
                                         User u = new User(mdb.getKey(), c, d,"0", mAuth.getCurrentUser().toString(), f.format(date).toString());
                                         mdb.child("Users").child(user.getUid()).setValue(u);
                                         String a = mdb.child("Users").child(user.getUid()).child("Group").push().getKey();
-                                        Group g = new Group(gr);
-                                        mdb.child("Users").child(user.getUid()).child("Group").child(a).setValue(g);
+                                        Group g = new Group(gr, a);
+                                        mdb.child("Users").child(user.getUid()).child("Group").child(a).setValue(a);
                                         mdb.child("Group").child(a).setValue(g);
                                         Intent switcher = new Intent(Registration.this, Auth.class);
                                         startActivity(switcher);
