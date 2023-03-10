@@ -4,8 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.main.forFilm.FilmsList">
-
+    tools:context=".ui.main.forGroup.GroupFilms">
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/FilmsList"
         android:layout_width="match_parent"
@@ -30,4 +29,5 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0"
         app:srcCompat="@android:drawable/ic_delete" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

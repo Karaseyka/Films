@@ -1,4 +1,4 @@
-package com.example.films.ui.main;
+package com.example.adapters;
 
 import android.content.Context;
 
@@ -8,10 +8,10 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 
-import com.example.films.Acc;
-import com.example.films.Groups;
+import com.example.films.ui.main.fragments.Acc;
+import com.example.films.ui.main.fragments.Groups;
 import com.example.films.R;
-import com.example.films.Search;
+import com.example.films.ui.main.fragments.Search;
 
 /**
  * A [FragmentPagerAdapter] that returns a fragment corresponding to

@@ -1,6 +1,6 @@
-package com.example.films;
+package com.example.films.ui.main.fragments;
 
-import android.annotation.SuppressLint;
+import android.app.ProgressDialog;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -11,14 +11,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.films.R;
+import com.example.films.ui.main.forUser.User;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.auth.UserProfileChangeRequest;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -37,6 +37,11 @@ public class Acc extends Fragment {
     }
     @Override
     public void onViewCreated(View v, Bundle savedInstanceState) {
+        ProgressDialog dialog=new ProgressDialog(v.getContext());
+        dialog.setMessage("message");
+        dialog.setCancelable(false);
+        dialog.setInverseBackgroundForced(false);
+        dialog.show();
         ma = FirebaseAuth.getInstance();
         mdb = FirebaseDatabase.getInstance().getReference();
         EditText et = (EditText) v.findViewById(R.id.textView9);
@@ -52,6 +57,7 @@ public class Acc extends Fragment {
                 et.setText(user.name);
                 et1.setText(user.email);
                 et2.setText(user.reg_date);
+                dialog.hide();
                 bt.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {

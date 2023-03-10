@@ -1,4 +1,4 @@
-package com.example.films;
+package com.example.films.ui.main.forUser;
 
 import java.lang.reflect.Array;
 

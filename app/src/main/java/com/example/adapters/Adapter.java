@@ -1,4 +1,4 @@
-package com.example.films;
+package com.example.adapters;
 
 
 
@@ -12,7 +12,9 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.films.ui.main.SectionsPagerAdapter;
+import com.example.films.ui.main.forGroup.Group;
+import com.example.films.ui.main.forGroup.GroupActivity;
+import com.example.films.R;
 
 import java.util.ArrayList;
 

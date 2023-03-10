@@ -13,7 +13,14 @@
         android:theme="@style/Theme.Films"
         tools:targetApi="31">
         <activity
-            android:name=".FilmsList"
+            android:name=".ui.main.forGroup.GroupFilms"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".ui.main.forFilm.FilmsList"
             android:exported="false"
             android:theme="@style/Theme.Films.NoActionBar">
             <meta-data
@@ -21,7 +28,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".MainActivity"
+            android:name=".ui.main.fragments.MainActivity"
             android:exported="false"
             android:label="@string/title_activity_main"
             android:theme="@style/Theme.Films.NoActionBar">
@@ -30,14 +37,14 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".Registration"
+            android:name=".ui.main.forUser.Registration"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".Auth"
+            android:name=".ui.main.forUser.Auth"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -50,7 +57,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".GroupActivity"
+            android:name=".ui.main.forGroup.GroupActivity"
             android:exported="false"
             android:label="@string/title_activity_group"
             android:theme="@style/Theme.Films.NoActionBar">

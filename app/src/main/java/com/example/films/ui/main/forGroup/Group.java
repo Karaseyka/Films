@@ -1,4 +1,4 @@
-package com.example.films;
+package com.example.films.ui.main.forGroup;
 
 import android.view.View;
 import android.widget.TextView;

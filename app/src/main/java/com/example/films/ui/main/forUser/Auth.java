@@ -1,4 +1,4 @@
-package com.example.films;
+package com.example.films.ui.main.forUser;
 
 
 
@@ -13,13 +13,13 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.films.ui.main.fragments.MainActivity;
+import com.example.films.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 
 
 public class Auth extends AppCompatActivity {
@@ -44,29 +44,29 @@ public class Auth extends AppCompatActivity {
         bt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mAuth.signOut();
-                mAuth.signInWithEmailAndPassword(et1.getText().toString(), et2.getText().toString())
-                        .addOnCompleteListener(Auth.this, new OnCompleteListener<AuthResult>() {
-                            @Override
-                            public void onComplete(@NonNull Task<AuthResult> task) {
-                                if (task.isSuccessful()) {
-                                    FirebaseUser user = mAuth.getCurrentUser();
-                                    Intent switcher = new Intent(Auth.this, MainActivity.class);
-                                    startActivity(switcher);
+                if (et1.getText().toString().length() > 0 && et2.getText().toString().length() > 0) {
+                    mAuth.signOut();
+                    mAuth.signInWithEmailAndPassword(et1.getText().toString(), et2.getText().toString())
+                            .addOnCompleteListener(Auth.this, new OnCompleteListener<AuthResult>() {
+                                @Override
+                                public void onComplete(@NonNull Task<AuthResult> task) {
+                                    if (task.isSuccessful()) {
+                                        FirebaseUser user = mAuth.getCurrentUser();
+                                        Intent switcher = new Intent(Auth.this, MainActivity.class);
+                                        startActivity(switcher);
 
 
+                                    } else {
 
+                                        // If sign in fails, display a message to the user.
+                                        Toast.makeText(Auth.this, "Authentication failed.",
+                                                Toast.LENGTH_SHORT).show();
 
-                                } else {
-
-                                    // If sign in fails, display a message to the user.
-                                    Toast.makeText(Auth.this, "Authentication failed.",
-                                            Toast.LENGTH_SHORT).show();
-
+                                    }
                                 }
-                            }
-                        });
+                            });
 
+                }
             }
         });
     }

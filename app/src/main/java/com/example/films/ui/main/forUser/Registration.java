@@ -1,9 +1,8 @@
-package com.example.films;
+package com.example.films.ui.main.forUser;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -11,6 +10,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.films.R;
+import com.example.films.ui.main.forFilm.Film;
+import com.example.films.ui.main.forGroup.Group;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -18,10 +20,8 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.core.Constants;
 
 import java.text.SimpleDateFormat;
-import java.util.Arrays;
 import java.util.Date;
 
 public class Registration extends AppCompatActivity {
@@ -35,11 +35,16 @@ public class Registration extends AppCompatActivity {
         EditText et2 = (EditText) findViewById(R.id.editTextTextPassword2);
         EditText et3 = (EditText) findViewById(R.id.editTextTextPassword3);
         DatabaseReference mdb1 = FirebaseDatabase.getInstance().getReference();
-        mdb1.child("Film").push().setValue(new Film("Время", "https://firebasestorage.googleapis.com/v0/b/films-5a8bb.appspot.com/o/1629795-2124006.jpeg?alt=media&token=967f17a7-5352-499e-9b91-23d095baf1da", "Aboba"));
-        mdb1.child("Film").push().setValue(new Film("Во всё тяжкое", "https://firebasestorage.googleapis.com/v0/b/films-5a8bb.appspot.com/o/33340317-1124423.jpg?alt=media&token=00d18a74-97bc-4f1d-9eef-99c4ce61b616", "Aboba"));
-        mdb1.child("Film").push().setValue(new Film("1+1", "https://firebasestorage.googleapis.com/v0/b/films-5a8bb.appspot.com/o/33340317-1124423.jpg?alt=media&token=00d18a74-97bc-4f1d-9eef-99c4ce61b616", "Aboba"));
-        mdb1.child("Film").push().setValue(new Film("Титаник", "https://firebasestorage.googleapis.com/v0/b/films-5a8bb.appspot.com/o/c7e53efbe083c67fb76bb137928f1815.jpg?alt=media&token=b28a3f6a-7fad-4dd4-8654-9467348ebc8d", "Aboba"));
-        mdb1.child("Film").push().setValue(new Film("Операция Ы", "https://firebasestorage.googleapis.com/v0/b/films-5a8bb.appspot.com/o/orig.jfif?alt=media&token=c25e55e9-c6af-4bc9-abde-73a11cd1926c", "Aboba"));
+//        String a = mdb1.child("Film").push().getKey();
+//        mdb1.child("Film").child(a).setValue(new Film("Время", "https://firebasestorage.googleapis.com/v0/b/films-5a8bb.appspot.com/o/1629795-2124006.jpeg?alt=media&token=967f17a7-5352-499e-9b91-23d095baf1da", "Aboba", a));
+//        a = mdb1.child("Film").push().getKey();
+//        mdb1.child("Film").child(a).setValue(new Film("Во всё тяжкое", "https://firebasestorage.googleapis.com/v0/b/films-5a8bb.appspot.com/o/33340317-1124423.jpg?alt=media&token=00d18a74-97bc-4f1d-9eef-99c4ce61b616", "Aboba", a));
+//        a = mdb1.child("Film").push().getKey();
+//        mdb1.child("Film").child(a).setValue(new Film("1+1", "https://firebasestorage.googleapis.com/v0/b/films-5a8bb.appspot.com/o/RKWiodWYDEU.jpg?alt=media&token=96cffaaf-0cb1-438c-977f-15096242acbd", "Aboba", a));
+//        a = mdb1.child("Film").push().getKey();
+//        mdb1.child("Film").child(a).setValue(new Film("Титаник", "https://firebasestorage.googleapis.com/v0/b/films-5a8bb.appspot.com/o/c7e53efbe083c67fb76bb137928f1815.jpg?alt=media&token=b28a3f6a-7fad-4dd4-8654-9467348ebc8d", "Aboba", a));
+//        a = mdb1.child("Film").push().getKey();
+//        mdb1.child("Film").child(a).setValue(new Film("Операция Ы", "https://firebasestorage.googleapis.com/v0/b/films-5a8bb.appspot.com/o/orig.jfif?alt=media&token=c25e55e9-c6af-4bc9-abde-73a11cd1926c", "Aboba", a));
         mAuth = FirebaseAuth.getInstance();
         Button bt = (Button) findViewById(R.id.button2);
         bt.setOnClickListener(new View.OnClickListener() {
@@ -49,7 +54,7 @@ public class Registration extends AppCompatActivity {
                 String b = et3.getText().toString();
                 String c = et.getText().toString();
                 String d = et1.getText().toString();
-                if (et2.getText().toString().length() >= 8 && et3.getText().toString().length() >= 8 && et2.getText().toString().equals(et3.getText().toString())) {
+                if (a.length() >= 8 && b.toString().length() >= 8 && a.equals(b) && c.length() > 0 && d.length() > 0) {
                     mAuth.createUserWithEmailAndPassword(d, a)
                             .addOnCompleteListener(Registration.this, new OnCompleteListener<AuthResult>() {
                                 @Override
