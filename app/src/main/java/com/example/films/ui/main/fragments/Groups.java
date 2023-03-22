@@ -60,6 +60,7 @@ public class Groups extends Fragment {
         mdb.child("Users").child(ma.getCurrentUser().getUid()).child("Group").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+                list.clear();
                 for (DataSnapshot postSnapshot: snapshot.getChildren()) {
                     String gr1 = postSnapshot.getValue().toString();
                     assert gr1 != null;
@@ -70,8 +71,6 @@ public class Groups extends Fragment {
                             Group gr = bSnapshot.getValue(Group.class);
 
                             list.add(gr);
-
-
                             rv.setAdapter(ad);
                             rv.setLayoutManager(new LinearLayoutManager((Context) getActivity()));
                             ad.notifyDataSetChanged();

@@ -66,7 +66,7 @@ public class Registration extends AppCompatActivity {
                                         Date date = new Date();
                                         SimpleDateFormat f = new SimpleDateFormat("dd-MM-yyyy");
                                         String gr = "   MyFirstGroup";
-                                        User u = new User(mdb.getKey(), c, d,"0", mAuth.getCurrentUser().toString(), f.format(date).toString());
+                                        User u = new User(user.getUid(), c, d,"0", mAuth.getCurrentUser().toString(), f.format(date).toString());
                                         mdb.child("Users").child(user.getUid()).setValue(u);
                                         String a = mdb.child("Users").child(user.getUid()).child("Group").push().getKey();
                                         Group g = new Group(gr, a);

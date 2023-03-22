@@ -55,7 +55,8 @@ public class AdapterFilms  extends RecyclerView.Adapter<AdapterFilms.FilmsHolder
         Film fl = film.get(position);
         holder.tv.setText(fl.name);
         holder.tv1.setText(fl.id);
-        Picasso.get().load(fl.url).resize(200, 400).into(holder.iv);
+        Picasso.get().load(fl.url).fit()
+                .centerCrop().into(holder.iv);
 
     }
     @Override

@@ -56,7 +56,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.GroupHolder> {
 
         public GroupHolder(@NonNull View itemView) {
             super(itemView);
-            tv = itemView.findViewById(R.id.t);
+            tv = itemView.findViewById(R.id.name);
             tv1 = itemView.findViewById(R.id.id);
             Context context = itemView.getContext();
 
