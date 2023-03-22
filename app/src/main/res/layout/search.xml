@@ -27,8 +27,10 @@
 
         <Spinner
             android:id="@+id/spinner"
-            android:layout_width="380dp"
-            android:layout_height="40dp"
+            android:layout_width="match_parent"
+            android:layout_height="37dp"
+            android:background="@drawable/bg"
+
             android:entries="@array/searchBy"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -40,7 +42,7 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/users"
             android:layout_width="match_parent"
-            android:layout_height="500dp"
+            android:layout_height="773dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.495"
             app:layout_constraintStart_toStartOf="parent"

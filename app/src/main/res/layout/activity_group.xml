@@ -30,41 +30,46 @@
         app:layout_constraintTop_toBottomOf="@+id/textView12"
         app:layout_constraintVertical_bias="0.0" />
 
-    <Button
-        android:id="@+id/add"
-        android:layout_width="203dp"
-        android:layout_height="74dp"
-        android:text="Добавить фильм"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView13"
-        app:layout_constraintVertical_bias="0.966" />
+    <RelativeLayout
+        android:id="@+id/check1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent">
 
-    <Button
-        android:id="@+id/check"
-        android:layout_width="203dp"
-        android:layout_height="74dp"
-        android:text="выбранные фильмы"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/add"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView13"
-        app:layout_constraintVertical_bias="0.966" />
+        <Button
+            android:id="@+id/check"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_centerVertical="true"
+            android:backgroundTint="#33CCCC"
+            android:gravity="left"
+            android:text="выбранные фильмы" />
+
+        <Button
+            android:id="@+id/add"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#33CCCC"
+            android:layout_centerVertical="true"
+            android:gravity="right"
+            android:layout_weight="1"
+            android:layout_alignParentRight="true"
+            android:text="Добавить фильм" />
+
+    </RelativeLayout>
 
     <Button
         android:id="@+id/button4"
-        android:layout_width="183dp"
-        android:layout_height="79dp"
+        android:layout_width="283dp"
+        android:layout_height="46dp"
+        android:backgroundTint="#33CCCC"
         android:text="Выбрать случайный фильм"
-        app:layout_constraintBottom_toTopOf="@+id/check"
+        app:layout_constraintBottom_toTopOf="@+id/check1"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView12"
-        app:layout_constraintVertical_bias="0.946" />
+        app:layout_constraintVertical_bias="0.957" />
 
     <TextView
         android:id="@+id/textView15"
@@ -87,4 +92,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView13"
         tools:srcCompat="@tools:sample/avatars" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

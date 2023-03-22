@@ -5,10 +5,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.main.forGroup.GroupFilms">
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/FilmsList"
         android:layout_width="match_parent"
-        android:layout_height="696dp"
+        android:layout_height="836dp"
         android:layout_marginStart="1dp"
         android:layout_marginEnd="1dp"
         app:layout_constraintBottom_toBottomOf="parent"

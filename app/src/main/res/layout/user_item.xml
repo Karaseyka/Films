@@ -40,8 +40,9 @@
 
     <Button
         android:id="@+id/adduser"
-        android:layout_width="155dp"
+        android:layout_width="174dp"
         android:layout_height="match_parent"
+        android:backgroundTint="#33CCCC"
         android:text="Добавить в группу"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

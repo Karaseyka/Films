@@ -23,6 +23,7 @@
         android:layout_width="240dp"
         android:layout_height="54dp"
         android:text="Подтвердить"
+        android:backgroundTint="#33CCCC"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
