@@ -12,6 +12,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.adapters.AdapterFilms;
 import com.example.films.R;
@@ -25,11 +26,14 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class GroupFilms extends AppCompatActivity {
 
     private DatabaseReference mdb;
     private FirebaseAuth ma;
+    public ArrayList<Film> a;
+    AdapterFilms ad;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,7 +54,7 @@ public class GroupFilms extends AppCompatActivity {
         mdb.child("Group").child(getIntent().getStringExtra("id")).child("GrFilms").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                ArrayList<Film> a = new ArrayList<>();
+                a = new ArrayList<>();
                 for (DataSnapshot ds: snapshot.getChildren()){
                     String fl1 = ds.getValue().toString();
                     mdb.child("Film").child(fl1).addListenerForSingleValueEvent(new ValueEventListener() {
@@ -62,9 +66,10 @@ public class GroupFilms extends AppCompatActivity {
                             RecyclerView rv = (RecyclerView) findViewById(R.id.FilmsList) ;
 
                             a.add(fl);
-                            AdapterFilms ad = new AdapterFilms(GroupFilms.this, a, getIntent().getStringExtra("id"), 2);
+                            ad = new AdapterFilms(GroupFilms.this, a, getIntent().getStringExtra("id"), 2);
                             rv.setAdapter(ad);
                             rv.setLayoutManager(new LinearLayoutManager(GroupFilms.this));
+                            new ItemTouchHelper(simpleItemTouchCallback).attachToRecyclerView(rv);
                             ad.notifyDataSetChanged();
                         }
 
@@ -83,6 +88,35 @@ public class GroupFilms extends AppCompatActivity {
             }
         });
 
-
     }
+    ItemTouchHelper.SimpleCallback simpleItemTouchCallback = new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
+
+        @Override
+        public boolean onMove(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, RecyclerView.ViewHolder target) {
+            Toast.makeText(getApplicationContext(), "on Move", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+
+        @Override
+        public void onSwiped(RecyclerView.ViewHolder viewHolder, int swipeDir) {
+            int position = viewHolder.getAbsoluteAdapterPosition();
+            Film x = a.get(position);
+            mdb.child("Group").child(getIntent().getStringExtra("id")).child("FilmOfGroup").addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    if (Objects.equals(snapshot.getValue(String.class), x.id)){
+                        mdb.child("Group").child(getIntent().getStringExtra("id")).child("FilmOfGroup").removeValue();
+                    }
+                }
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+
+                }
+            });
+            mdb.child("Group").child(getIntent().getStringExtra("id")).child("GrFilms").child(x.id).removeValue();
+            a.remove(position);
+            ad.notifyDataSetChanged();
+
+        }
+    };
 }

@@ -11,10 +11,12 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.films.ui.main.forFilm.Film;
 import com.example.films.ui.main.forFilm.FilmsList;
 import com.example.films.R;
+import com.example.films.ui.main.fragments.MainActivity;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -38,7 +40,47 @@ public class GroupActivity extends AppCompatActivity {
         Button bt2 = (Button) findViewById(R.id.button4);
         TextView tv = (TextView) findViewById(R.id.textView13);
         TextView tv1 = (TextView) findViewById(R.id.textView12);
+        TextView tv3 = (TextView) findViewById(R.id.textView15);
+        ImageView iv = (ImageView) findViewById(R.id.imageView5);
+        ImageView iv1 = (ImageView) findViewById(R.id.imageView6);
+        iv1.setOnClickListener(view -> {
+            Intent switcher = new Intent(GroupActivity.this, MainActivity.class);
+            startActivity(switcher);
+        });
         tv.setText(getIntent().getStringExtra("id"));
+
+        mbd.child("Group").child(getIntent().getStringExtra("id")).child("FilmOfGroup").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                try {
+                    String name = snapshot.getValue().toString();
+                    mbd.child("Film").child(name).addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                            Film fl = snapshot.getValue(Film.class);
+                            tv3.setText(fl.name);
+                            Picasso.get().load(fl.url).fit()
+                                    .centerCrop().into(iv);
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
+
+                        }
+                    });
+                }catch (Exception e){}
+
+
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+
         mbd.child("Group").child(getIntent().getStringExtra("id")).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -77,25 +119,27 @@ public class GroupActivity extends AppCompatActivity {
                          for(DataSnapshot ds: snapshot.getChildren()){
                              grfl.add(ds.getKey());
                          }
-                         int rd = new Random().nextInt(grfl.size());
-                         TextView tv3 = (TextView) findViewById(R.id.textView15);
-                         ImageView iv = (ImageView) findViewById(R.id.imageView5);
-                         mbd.child("Group").child(getIntent().getStringExtra("id")).child("FilmOfGroup").setValue(grfl.get(rd));
-                         mbd.child("Film").child(grfl.get(rd)).addListenerForSingleValueEvent(new ValueEventListener() {
-                             @Override
-                             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                                 Film fl = snapshot.getValue(Film.class);
-                                 tv3.setText(fl.name);
-                                 Picasso.get().load(fl.url).resize(400, 800).into(iv);
+                         if(grfl.size() > 0) {
+                             int rd = new Random().nextInt(grfl.size());
+                             mbd.child("Group").child(getIntent().getStringExtra("id")).child("FilmOfGroup").setValue(grfl.get(rd));
+                             mbd.child("Film").child(grfl.get(rd)).addListenerForSingleValueEvent(new ValueEventListener() {
+                                 @Override
+                                 public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                     Film fl = snapshot.getValue(Film.class);
+                                     tv3.setText(fl.name);
+                                     Picasso.get().load(fl.url).fit()
+                                             .centerCrop().into(iv);
 
-                             }
+                                 }
 
-                             @Override
-                             public void onCancelled(@NonNull DatabaseError error) {
+                                 @Override
+                                 public void onCancelled(@NonNull DatabaseError error) {
 
-                             }
-                         });
-
+                                 }
+                             });
+                         } else{
+                             Toast.makeText(GroupActivity.this, "Ой, кажется вы не выбрали фильмы", Toast.LENGTH_LONG).show();
+                         }
                      }
 
                      @Override
