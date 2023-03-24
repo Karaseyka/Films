@@ -39,10 +39,9 @@ public class Groups extends Fragment {
     private DatabaseReference mdb;
     private DatabaseReference mdb1;
     private FirebaseAuth ma;
-    private FirebaseRecyclerAdapter rA;
 
-    ArrayList<Group> list = new ArrayList<>();
-    Adapter ad = new Adapter((Context) getActivity(), list);
+    ArrayList<Group> list;
+    Adapter ad;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -52,6 +51,8 @@ public class Groups extends Fragment {
     }
     @Override
     public void onViewCreated(View v, Bundle savedInstanceState) {
+        list = new ArrayList<>();
+        ad = new Adapter((Context) getActivity(), list);
         ma = FirebaseAuth.getInstance();
         mdb = FirebaseDatabase.getInstance().getReference();
         mdb1 = FirebaseDatabase.getInstance().getReference();
@@ -63,7 +64,6 @@ public class Groups extends Fragment {
                 list.clear();
                 for (DataSnapshot postSnapshot: snapshot.getChildren()) {
                     String gr1 = postSnapshot.getValue().toString();
-                    assert gr1 != null;
                     mdb1.child("Group").child(gr1).addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot bSnapshot) {
@@ -105,6 +105,7 @@ public class Groups extends Fragment {
                             String gr = "   " + input.getText().toString();
                             String a = mdb.child("Users").child(user.getUid()).child("Group").push().getKey();
                             Group g = new Group(gr, a);
+                            assert a != null;
                             mdb.child("Users").child(user.getUid()).child("Group").child(a).setValue(a);
                             mdb.child("Group").child(a).setValue(g);
                             list.add(new Group(gr, a));

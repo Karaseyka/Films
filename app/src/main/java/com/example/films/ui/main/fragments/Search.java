@@ -79,77 +79,80 @@ public class Search extends Fragment {
             public boolean onQueryTextChange(String newText) {
                 list.clear();
                 nt.clear();
-
+                assert newText != null;
                 nt.add(newText);
-                if (Objects.equals(spin.get(0), choose[0])) {
-                    mdb.child("Users").addListenerForSingleValueEvent(new ValueEventListener() {
-                        @Override
-                        public void onDataChange(@NonNull DataSnapshot snapshot) {
-                            for (DataSnapshot i : snapshot.getChildren()) {
-                                User us = i.getValue(User.class);
-                                Log.d("fhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh", nt.get(0));
-                                if (us.email.toLowerCase().contains(nt.get(0).toLowerCase())) {
-                                    list.add(us);
+                try {
+                    String x = spin.get(0);
+
+                    if (Objects.equals(x, choose[0])) {
+                        mdb.child("Users").addListenerForSingleValueEvent(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                for (DataSnapshot i : snapshot.getChildren()) {
+                                    User us = i.getValue(User.class);
+//                                Log.d("fhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh", nt.get(0));
+                                    if (us.email.toLowerCase().contains(nt.get(0).toLowerCase())) {
+                                        list.add(us);
+                                    }
                                 }
+                                RecyclerView rv = (RecyclerView) v.findViewById(R.id.users);
+                                AdapterUser adapter = new AdapterUser((Context) getActivity(), list);
+                                rv.setAdapter(adapter);
+                                rv.setLayoutManager(new LinearLayoutManager((Context) getActivity()));
+                                adapter.notifyDataSetChanged();
                             }
-                            RecyclerView rv = (RecyclerView) v.findViewById(R.id.users);
-                            AdapterUser adapter = new AdapterUser((Context) getActivity(), list);
-                            rv.setAdapter(adapter);
-                            rv.setLayoutManager(new LinearLayoutManager((Context) getActivity()));
-                            adapter.notifyDataSetChanged();
-                        }
 
-                        @Override
-                        public void onCancelled(@NonNull DatabaseError error) {
-                        }
-                    });
-                } else if (Objects.equals(spin.get(0), choose[1])){
-                    mdb.child("Users").addListenerForSingleValueEvent(new ValueEventListener() {
-                        @Override
-                        public void onDataChange(@NonNull DataSnapshot snapshot) {
-                            for (DataSnapshot i : snapshot.getChildren()) {
-                                User us = i.getValue(User.class);
-                                Log.d("fhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh", nt.get(0));
-                                if (us.name.toLowerCase().contains(nt.get(0).toLowerCase())) {
-                                    list.add(us);
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError error) {
+                            }
+                        });
+                    } else if (Objects.equals(spin.get(0), choose[1])) {
+                        mdb.child("Users").addListenerForSingleValueEvent(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                for (DataSnapshot i : snapshot.getChildren()) {
+                                    User us = i.getValue(User.class);
+                                    Log.d("fhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh", nt.get(0));
+                                    if (us.name.toLowerCase().contains(nt.get(0).toLowerCase())) {
+                                        list.add(us);
+                                    }
                                 }
+                                RecyclerView rv = (RecyclerView) v.findViewById(R.id.users);
+                                AdapterUser adapter = new AdapterUser((Context) getActivity(), list);
+                                rv.setAdapter(adapter);
+                                rv.setLayoutManager(new LinearLayoutManager((Context) getActivity()));
+                                adapter.notifyDataSetChanged();
                             }
-                            RecyclerView rv = (RecyclerView) v.findViewById(R.id.users);
-                            AdapterUser adapter = new AdapterUser((Context) getActivity(), list);
-                            rv.setAdapter(adapter);
-                            rv.setLayoutManager(new LinearLayoutManager((Context) getActivity()));
-                            adapter.notifyDataSetChanged();
-                        }
 
-                        @Override
-                        public void onCancelled(@NonNull DatabaseError error) {
-                        }
-                    });
-                } else{
-                    mdb.child("Users").addListenerForSingleValueEvent(new ValueEventListener() {
-                        @Override
-                        public void onDataChange(@NonNull DataSnapshot snapshot) {
-                            for (DataSnapshot i : snapshot.getChildren()) {
-                                String us = i.getKey().toString();
-                                User user = i.getValue(User.class);
-                                Log.d("fhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh", nt.get(0));
-                                if (us.contains(nt.get(0))) {
-                                    list.add(user);
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError error) {
+                            }
+                        });
+                    } else {
+                        mdb.child("Users").addListenerForSingleValueEvent(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                for (DataSnapshot i : snapshot.getChildren()) {
+                                    String us = i.getKey().toString();
+                                    User user = i.getValue(User.class);
+                                    Log.d("fhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh", nt.get(0));
+                                    if (us.contains(nt.get(0))) {
+                                        list.add(user);
+                                    }
                                 }
+                                RecyclerView rv = (RecyclerView) v.findViewById(R.id.users);
+                                AdapterUser adapter = new AdapterUser((Context) getActivity(), list);
+                                rv.setAdapter(adapter);
+                                rv.setLayoutManager(new LinearLayoutManager((Context) getActivity()));
+                                adapter.notifyDataSetChanged();
                             }
-                            RecyclerView rv = (RecyclerView) v.findViewById(R.id.users);
-                            AdapterUser adapter = new AdapterUser((Context) getActivity(), list);
-                            rv.setAdapter(adapter);
-                            rv.setLayoutManager(new LinearLayoutManager((Context) getActivity()));
-                            adapter.notifyDataSetChanged();
-                        }
 
-                        @Override
-                        public void onCancelled(@NonNull DatabaseError error) {
-                        }
-                    });
-
-                }
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError error) {
+                            }
+                        });
+                    }
+                }catch(Exception e){}
                     return false;
             }
 

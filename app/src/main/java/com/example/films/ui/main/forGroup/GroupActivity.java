@@ -126,6 +126,7 @@ public class GroupActivity extends AppCompatActivity {
                                  @Override
                                  public void onDataChange(@NonNull DataSnapshot snapshot) {
                                      Film fl = snapshot.getValue(Film.class);
+                                     assert fl != null;
                                      tv3.setText(fl.name);
                                      Picasso.get().load(fl.url).fit()
                                              .centerCrop().into(iv);

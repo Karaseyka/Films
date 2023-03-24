@@ -38,7 +38,7 @@ public class Acc extends Fragment {
     @Override
     public void onViewCreated(View v, Bundle savedInstanceState) {
         ProgressDialog dialog=new ProgressDialog(v.getContext());
-        dialog.setMessage("message");
+        dialog.setMessage("Подождите");
         dialog.setCancelable(false);
         dialog.setInverseBackgroundForced(false);
         dialog.show();
