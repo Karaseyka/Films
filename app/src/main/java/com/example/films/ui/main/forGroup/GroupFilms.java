@@ -104,7 +104,7 @@ public class GroupFilms extends AppCompatActivity {
             mdb.child("Group").child(getIntent().getStringExtra("id")).child("FilmOfGroup").addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
-                    if (Objects.equals(snapshot.getValue(String.class), x.id)){
+                    if (Objects.equals(snapshot.child("Name").getValue(String.class), x.id)){
                         mdb.child("Group").child(getIntent().getStringExtra("id")).child("FilmOfGroup").removeValue();
                     }
                 }

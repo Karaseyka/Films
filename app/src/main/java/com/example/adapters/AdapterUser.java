@@ -126,6 +126,16 @@ public class AdapterUser extends RecyclerView.Adapter<AdapterUser.UserHolder> {
         return this.user.size();
     }
 
+    @Override
+    public long getItemId(int position) {
+        return position;
+    }
+
+    @Override
+    public int getItemViewType(int position) {
+        return position;
+    }
+
     public class UserHolder extends RecyclerView.ViewHolder {
 
         TextView tv;

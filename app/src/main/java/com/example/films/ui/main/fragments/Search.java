@@ -88,6 +88,7 @@ public class Search extends Fragment {
                         mdb.child("Users").addListenerForSingleValueEvent(new ValueEventListener() {
                             @Override
                             public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                list.clear();
                                 for (DataSnapshot i : snapshot.getChildren()) {
                                     User us = i.getValue(User.class);
 //                                Log.d("fhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh", nt.get(0));
@@ -110,6 +111,7 @@ public class Search extends Fragment {
                         mdb.child("Users").addListenerForSingleValueEvent(new ValueEventListener() {
                             @Override
                             public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                list.clear();
                                 for (DataSnapshot i : snapshot.getChildren()) {
                                     User us = i.getValue(User.class);
                                     Log.d("fhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh", nt.get(0));
@@ -132,6 +134,7 @@ public class Search extends Fragment {
                         mdb.child("Users").addListenerForSingleValueEvent(new ValueEventListener() {
                             @Override
                             public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                list.clear();
                                 for (DataSnapshot i : snapshot.getChildren()) {
                                     String us = i.getKey().toString();
                                     User user = i.getValue(User.class);
