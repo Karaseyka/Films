@@ -26,6 +26,7 @@ import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
+import java.util.Objects;
 import java.util.Random;
 
 public class GroupActivity extends AppCompatActivity {
@@ -117,18 +118,22 @@ public class GroupActivity extends AppCompatActivity {
 
 
 
-        mbd.child("Group").child(grId).child("FilmOfGroup").addListenerForSingleValueEvent(new ValueEventListener() {
+        mbd.child("Group").child(grId).child("FilmOfGroup").child("Name").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 try {
-                    String name = snapshot.getValue().toString();
+                    String name = Objects.requireNonNull(snapshot.getValue()).toString();
                     mbd.child("Film").child(name).addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot snapshot) {
                             Film fl = snapshot.getValue(Film.class);
-                            tv3.setText(fl.name);
-                            Picasso.get().load(fl.url).fit()
-                                    .centerCrop().into(iv);
+                            try {
+                                tv3.setText(fl.name);
+                                Picasso.get().load(fl.url).fit()
+                                        .centerCrop().into(iv);
+                            } catch (NullPointerException e){}
+
+
                         }
                         @Override
                         public void onCancelled(@NonNull DatabaseError error) {
@@ -183,35 +188,48 @@ public class GroupActivity extends AppCompatActivity {
          bt2.setOnClickListener(new View.OnClickListener() {
              @Override
              public void onClick(View view) {
-                 mbd.child("Group").child(grId).child("GrFilms").addListenerForSingleValueEvent(new ValueEventListener() {
-                     @Override
-                     public void onDataChange(@NonNull DataSnapshot snapshot) {
-                         ArrayList<String> grfl = new ArrayList<>();
-                         for(DataSnapshot ds: snapshot.getChildren()){
-                             grfl.add(ds.getKey());
+                 try {
+                     mbd.child("Group").child(grId).child("GrFilms").addListenerForSingleValueEvent(new ValueEventListener() {
+                         @Override
+                         public void onDataChange(@NonNull DataSnapshot snapshot) {
+                             ArrayList<String> grfl = new ArrayList<>();
+                             for (DataSnapshot ds : snapshot.getChildren()) {
+                                 grfl.add(ds.getKey());
+                             }
+                             if (grfl.size() > 0) {
+                                 int rd = new Random().nextInt(grfl.size());
+                                 mbd.child("Group").child(grId).child("FilmOfGroup").child("Name").setValue(grfl.get(rd));
+                                 mbd.child("Film").child(grfl.get(rd)).addListenerForSingleValueEvent(new ValueEventListener() {
+                                     @Override
+                                     public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                         Film fl = snapshot.getValue(Film.class);
+                                         assert fl != null;
+                                         tv3.setText(fl.name);
+                                         Picasso.get().load(fl.url).fit()
+                                                 .centerCrop().into(iv);
+                                     }
+
+                                     @Override
+                                     public void onCancelled(@NonNull DatabaseError error) {
+                                     }
+                                 });
+                                 iv2.setVisibility(View.VISIBLE);
+                                 iv3.setVisibility(View.VISIBLE);
+                                 iv4.setVisibility(View.VISIBLE);
+                                 tv4.setVisibility(View.VISIBLE);
+                                 tv5.setVisibility(View.VISIBLE);
+                                 tv6.setVisibility(View.VISIBLE);
+                             } else {
+                                 Toast.makeText(GroupActivity.this, "Ой, кажется вы не выбрали фильмы", Toast.LENGTH_LONG).show();
+                             }
                          }
-                         if(grfl.size() > 0) {
-                             int rd = new Random().nextInt(grfl.size());
-                             mbd.child("Group").child(grId).child("FilmOfGroup").child("Name").setValue(grfl.get(rd));
-                             mbd.child("Film").child(grfl.get(rd)).addListenerForSingleValueEvent(new ValueEventListener() {
-                                 @Override
-                                 public void onDataChange(@NonNull DataSnapshot snapshot) {
-                                     Film fl = snapshot.getValue(Film.class);
-                                     assert fl != null;
-                                     tv3.setText(fl.name);
-                                     Picasso.get().load(fl.url).fit()
-                                             .centerCrop().into(iv);
-                                 }
-                                 @Override
-                                 public void onCancelled(@NonNull DatabaseError error) {}
-                             });
-                         } else{
-                             Toast.makeText(GroupActivity.this, "Ой, кажется вы не выбрали фильмы", Toast.LENGTH_LONG).show();
+
+                         @Override
+                         public void onCancelled(@NonNull DatabaseError error) {
                          }
-                     }
-                     @Override
-                     public void onCancelled(@NonNull DatabaseError error) {}
-                 });
+                     });
+
+                 }catch (Exception e){}
              }
          });
 
