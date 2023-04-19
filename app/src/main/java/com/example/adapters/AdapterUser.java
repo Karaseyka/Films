@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -60,22 +61,26 @@ public class AdapterUser extends RecyclerView.Adapter<AdapterUser.UserHolder> {
             @Override
             public void onClick(View view) {
                 Log.d("kdjhffhjkdkdkgkdkh", us.id);
-                ad = new AdapterGrDialog(context, list, us);
+
                 final AlertDialog.Builder mBuilder = new AlertDialog.Builder(context);
-                mBuilder.setTitle("Location Available!");
+                mBuilder.setCancelable(true);
+                mBuilder.setTitle("Выберите группу");
                 LayoutInflater inflater = LayoutInflater.from(context);
-                View convertView = inflater.inflate(R.layout.activity_films_list, null);
+                View convertView = inflater.inflate(R.layout.recycler_for_alert, null);
                 DatabaseReference mdb;
                 DatabaseReference mdb1;
                 FirebaseAuth ma;
                 FirebaseRecyclerAdapter rA;
 
-                RecyclerView l = convertView.findViewById(R.id.FilmsList);
-
+                RecyclerView l = convertView.findViewById(R.id.grList);
+                ImageView iv = convertView.findViewById(R.id.back);
                 l.setLayoutManager(new LinearLayoutManager(context));
                 ma = FirebaseAuth.getInstance();
                 mdb = FirebaseDatabase.getInstance().getReference();
                 mdb1 = FirebaseDatabase.getInstance().getReference();
+                mBuilder.setView(convertView);
+                AlertDialog dialog = mBuilder.create();
+                iv.setOnClickListener(view1 -> dialog.cancel());
 
 
                 mdb.child("Users").child(ma.getCurrentUser().getUid()).child("Group").addListenerForSingleValueEvent(new ValueEventListener() {
@@ -90,7 +95,7 @@ public class AdapterUser extends RecyclerView.Adapter<AdapterUser.UserHolder> {
                                 public void onDataChange(@NonNull DataSnapshot bSnapshot) {
 
                                     Group gr = bSnapshot.getValue(Group.class);
-
+                                    ad = new AdapterGrDialog(context, list, us, dialog);
                                     list.add(gr);
                                     l.setAdapter(ad);
                                     l.setLayoutManager(new LinearLayoutManager(context));
@@ -111,9 +116,9 @@ public class AdapterUser extends RecyclerView.Adapter<AdapterUser.UserHolder> {
                     }
                 });
 
-                mBuilder.setView(convertView); // setView
+                 // setView
 
-                AlertDialog dialog = mBuilder.create();
+
                 dialog.show();
             }
         });

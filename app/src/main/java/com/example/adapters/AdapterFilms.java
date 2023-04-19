@@ -70,6 +70,7 @@ public class AdapterFilms  extends RecyclerView.Adapter<AdapterFilms.FilmsHolder
         TextView tv;
         TextView tv1;
         ImageView iv;
+        ImageView iv1;
         Context context = itemView.getContext();
 
         public FilmsHolder(@NonNull View itemView) {
@@ -89,6 +90,8 @@ public class AdapterFilms  extends RecyclerView.Adapter<AdapterFilms.FilmsHolder
             tv = itemView.findViewById(R.id.textView14);
             tv1 = itemView.findViewById(R.id.id);
             iv = itemView.findViewById(R.id.imageView3);
+            iv1 = itemView.findViewById(R.id.imageView7);
+            iv1.setVisibility(View.GONE);
             String id = AdapterFilms.this.id;
 
             mdb = FirebaseDatabase.getInstance().getReference();
@@ -133,6 +136,8 @@ public class AdapterFilms  extends RecyclerView.Adapter<AdapterFilms.FilmsHolder
             tv = itemView.findViewById(R.id.textView14);
             tv1 = itemView.findViewById(R.id.id);
             iv = itemView.findViewById(R.id.imageView3);
+
+
 
         }
     }

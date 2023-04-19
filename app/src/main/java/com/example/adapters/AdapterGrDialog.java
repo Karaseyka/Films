@@ -1,5 +1,6 @@
 package com.example.adapters;
 
+import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
@@ -32,13 +33,15 @@ public class AdapterGrDialog  extends RecyclerView.Adapter<AdapterGrDialog.GrDio
     Context context;
     ArrayList<Group> gr;
     User user;
+    Dialog dialog;
 
 
 
-    public AdapterGrDialog(Context context, ArrayList<Group> gr, User user){
+    public AdapterGrDialog(Context context, ArrayList<Group> gr, User user, Dialog dialog){
         this.context = context;
         this.user = user;
         this.gr = gr;
+        this.dialog = dialog;
 
 
     }
@@ -81,7 +84,9 @@ public class AdapterGrDialog  extends RecyclerView.Adapter<AdapterGrDialog.GrDio
                 @Override
                 public void onClick(View view) {
                     mdb = FirebaseDatabase.getInstance().getReference();
+                    mdb.child("Group").child(tv1.getText().toString()).child("Users").child(user.id).setValue(user.id);
                     mdb.child("Users").child(user.id).child("Group").child(tv1.getText().toString()).setValue(tv1.getText().toString());
+                    dialog.cancel();
                 }
             });
 

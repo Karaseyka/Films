@@ -8,10 +8,10 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 
-import com.example.films.ui.main.fragments.Acc;
-import com.example.films.ui.main.fragments.Groups;
+import com.example.films.ui.main.fragments.AccFragment;
+import com.example.films.ui.main.fragments.GroupsFragment;
 import com.example.films.R;
-import com.example.films.ui.main.fragments.Search;
+import com.example.films.ui.main.fragments.SearchFragment;
 
 /**
  * A [FragmentPagerAdapter] that returns a fragment corresponding to
@@ -34,11 +34,11 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
         // Return a PlaceholderFragment (defined as a static inner class below).
         switch (position){
             case 0:
-                return new Acc();
+                return new AccFragment();
             case 1:
-                return new Search();
+                return new SearchFragment();
             case 2:
-                return new Groups();
+                return new GroupsFragment();
 
         }
         return null;

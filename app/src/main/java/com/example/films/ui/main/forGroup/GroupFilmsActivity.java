@@ -2,7 +2,6 @@ package com.example.films.ui.main.forGroup;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -11,13 +10,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.adapters.AdapterFilms;
 import com.example.films.R;
 import com.example.films.ui.main.forFilm.Film;
-import com.example.films.ui.main.forFilm.FilmsList;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -28,7 +25,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.Objects;
 
-public class GroupFilms extends AppCompatActivity {
+public class GroupFilmsActivity extends AppCompatActivity {
 
     private DatabaseReference mdb;
     private FirebaseAuth ma;
@@ -46,7 +43,7 @@ public class GroupFilms extends AppCompatActivity {
         iv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent switcher = new Intent(GroupFilms.this, GroupActivity.class).putExtra("id", getIntent().getStringExtra("id"));
+                Intent switcher = new Intent(GroupFilmsActivity.this, GroupActivity.class).putExtra("id", getIntent().getStringExtra("id"));
                 startActivity(switcher);
             }
         });
@@ -66,9 +63,9 @@ public class GroupFilms extends AppCompatActivity {
                             RecyclerView rv = (RecyclerView) findViewById(R.id.FilmsList) ;
 
                             a.add(fl);
-                            ad = new AdapterFilms(GroupFilms.this, a, getIntent().getStringExtra("id"), 2);
+                            ad = new AdapterFilms(GroupFilmsActivity.this, a, getIntent().getStringExtra("id"), 2);
                             rv.setAdapter(ad);
-                            rv.setLayoutManager(new LinearLayoutManager(GroupFilms.this));
+                            rv.setLayoutManager(new LinearLayoutManager(GroupFilmsActivity.this));
                             new ItemTouchHelper(simpleItemTouchCallback).attachToRecyclerView(rv);
                             ad.notifyDataSetChanged();
                         }

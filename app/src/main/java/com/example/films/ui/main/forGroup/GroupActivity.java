@@ -2,8 +2,6 @@ package com.example.films.ui.main.forGroup;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.ItemTouchHelper;
-import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -53,10 +51,44 @@ public class GroupActivity extends AppCompatActivity {
         ImageView iv2 = (ImageView) findViewById(R.id.image_like);
         ImageView iv3 = (ImageView) findViewById(R.id.image_dis);
         ImageView iv4 = (ImageView) findViewById(R.id.image_ney);
+        ImageView del = (ImageView) findViewById(R.id.del);
         String grId = getIntent().getStringExtra("id");
         FirebaseAuth ma;
         ma = FirebaseAuth.getInstance();
         DatabaseReference mbd = FirebaseDatabase.getInstance().getReference();
+
+        del.setOnClickListener(view -> {
+            mbd.child("Group").child(grId).child("Users").addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    int i = 0;
+                    try {
+                        for(DataSnapshot dt: dataSnapshot.getChildren()){
+                            i += 1;
+                        }
+                        if(i <= 1){
+                            mbd.child("Group").child(grId).removeValue();
+                            mbd.child("Users").child(ma.getCurrentUser().getUid()).child("Group").child(grId).removeValue();
+                        } else{
+                            mbd.child("Users").child(ma.getCurrentUser().getUid()).child("Group").child(grId).removeValue();
+                            mbd.child("Group").child(grId).child("Users").child(ma.getCurrentUser().getUid()).removeValue();
+                        }
+                        Intent switcher = new Intent(GroupActivity.this, MainActivity.class);
+                        startActivity(switcher);
+                    }catch (Exception e){
+                        mbd.child("Group").child(grId).removeValue();
+                        mbd.child("Users").child(ma.getCurrentUser().getUid()).child("Group").child(grId).removeValue();
+                        Intent switcher = new Intent(GroupActivity.this, MainActivity.class);
+                        startActivity(switcher);
+                    }
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                }
+            });
+        });
 
         mbd.child("Group").child(grId).child("FilmOfGroup").child("Likes").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -179,7 +211,7 @@ public class GroupActivity extends AppCompatActivity {
         bt1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent switcher = new Intent(GroupActivity.this, GroupFilms.class).putExtra("id", tv.getText());
+                Intent switcher = new Intent(GroupActivity.this, GroupFilmsActivity.class).putExtra("id", tv.getText());
                 startActivity(switcher);
 
             }
@@ -370,8 +402,6 @@ public class GroupActivity extends AppCompatActivity {
             });
 
         });
-
-
 
 
         iv4.setOnClickListener(view -> {

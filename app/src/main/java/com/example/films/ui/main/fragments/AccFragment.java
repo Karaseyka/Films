@@ -26,14 +26,14 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 
-public class Acc extends Fragment {
+public class AccFragment extends Fragment {
     private DatabaseReference mdb;
     private FirebaseAuth ma;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
 
-        return inflater.inflate(R.layout.acc, container, false);
+        return inflater.inflate(R.layout.fragment_acc, container, false);
     }
     @Override
     public void onViewCreated(View v, Bundle savedInstanceState) {

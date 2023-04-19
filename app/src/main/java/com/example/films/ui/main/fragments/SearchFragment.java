@@ -28,11 +28,10 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
-import java.util.Locale;
 import java.util.Objects;
 
 
-public class Search extends Fragment {
+public class SearchFragment extends Fragment {
     private FirebaseAuth ma;
     private DatabaseReference mdb;
     public ArrayList<User> list;
@@ -43,7 +42,7 @@ public class Search extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.search, container, false);
+        return inflater.inflate(R.layout.fragment_search, container, false);
     }
     @Override
     public void onViewCreated(View v, Bundle savedInstanceState) {
@@ -55,9 +54,29 @@ public class Search extends Fragment {
         String[] choose = getResources().getStringArray(R.array.searchBy);
         mdb = FirebaseDatabase.getInstance().getReference();
         ma = FirebaseAuth.getInstance();
+        mdb.child("Users").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                list.clear();
+                for (DataSnapshot i : snapshot.getChildren()) {
+                    User us = i.getValue(User.class);
+//                                Log.d("fhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh", nt.get(0));
+
+                        list.add(us);
+                }
+                RecyclerView rv = (RecyclerView) v.findViewById(R.id.users);
+                AdapterUser adapter = new AdapterUser((Context) getActivity(), list);
+                rv.setAdapter(adapter);
+                rv.setLayoutManager(new LinearLayoutManager((Context) getActivity()));
+                adapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+            }
+        });
 
         sp.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-
             public void onItemSelected(AdapterView<?> parent,
                                        View itemSelected, int selectedItemPosition, long selectedId) {
                 spin.clear();

@@ -22,7 +22,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 
-public class Auth extends AppCompatActivity {
+public class AuthActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,7 +37,7 @@ public class Auth extends AppCompatActivity {
         tw.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent switcher1 = new Intent(Auth.this, Registration.class);
+                Intent switcher1 = new Intent(AuthActivity.this, RegistrationActivity.class);
                 startActivity(switcher1);
             }
         });
@@ -47,19 +47,19 @@ public class Auth extends AppCompatActivity {
                 if (et1.getText().toString().length() > 0 && et2.getText().toString().length() > 0) {
                     mAuth.signOut();
                     mAuth.signInWithEmailAndPassword(et1.getText().toString(), et2.getText().toString())
-                            .addOnCompleteListener(Auth.this, new OnCompleteListener<AuthResult>() {
+                            .addOnCompleteListener(AuthActivity.this, new OnCompleteListener<AuthResult>() {
                                 @Override
                                 public void onComplete(@NonNull Task<AuthResult> task) {
                                     if (task.isSuccessful()) {
                                         FirebaseUser user = mAuth.getCurrentUser();
-                                        Intent switcher = new Intent(Auth.this, MainActivity.class);
+                                        Intent switcher = new Intent(AuthActivity.this, MainActivity.class);
                                         startActivity(switcher);
 
 
                                     } else {
 
                                         // If sign in fails, display a message to the user.
-                                        Toast.makeText(Auth.this, "Authentication failed.",
+                                        Toast.makeText(AuthActivity.this, "Authentication failed.",
                                                 Toast.LENGTH_SHORT).show();
 
                                     }

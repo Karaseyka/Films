@@ -11,7 +11,6 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.films.R;
-import com.example.films.ui.main.forFilm.Film;
 import com.example.films.ui.main.forGroup.Group;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -24,7 +23,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class Registration extends AppCompatActivity {
+public class RegistrationActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,11 +55,11 @@ public class Registration extends AppCompatActivity {
                 String d = et1.getText().toString();
                 if (a.length() >= 8 && b.toString().length() >= 8 && a.equals(b) && c.length() > 0 && d.length() > 0) {
                     mAuth.createUserWithEmailAndPassword(d, a)
-                            .addOnCompleteListener(Registration.this, new OnCompleteListener<AuthResult>() {
+                            .addOnCompleteListener(RegistrationActivity.this, new OnCompleteListener<AuthResult>() {
                                 @Override
                                 public void onComplete(@NonNull Task<AuthResult> task) {
                                     if (task.isSuccessful()) {
-                                        Toast.makeText(Registration.this, "Успешно", Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(RegistrationActivity.this, "Успешно", Toast.LENGTH_SHORT).show();
                                         DatabaseReference mdb = FirebaseDatabase.getInstance().getReference();
                                         FirebaseUser user = mAuth.getCurrentUser();
                                         Date date = new Date();
@@ -72,11 +71,11 @@ public class Registration extends AppCompatActivity {
                                         Group g = new Group(gr, a);
                                         mdb.child("Users").child(user.getUid()).child("Group").child(a).setValue(a);
                                         mdb.child("Group").child(a).setValue(g);
-                                        Intent switcher = new Intent(Registration.this, Auth.class);
+                                        Intent switcher = new Intent(RegistrationActivity.this, AuthActivity.class);
                                         startActivity(switcher);
                                     } else {
                                         // If sign in fails, display a message to the user.
-                                        Toast.makeText(Registration.this, "Ошибка регистрации",
+                                        Toast.makeText(RegistrationActivity.this, "Ошибка регистрации",
                                                 Toast.LENGTH_SHORT).show();
                                     }
                                 }

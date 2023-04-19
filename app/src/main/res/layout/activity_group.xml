@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="56dp"
         android:layout_marginTop="32dp"
-        android:text="TextView"
+        android:text=""
         android:textSize="34dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -25,7 +25,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="88dp"
-        android:text="TextView"
+        android:text=""
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.011"
         app:layout_constraintStart_toStartOf="parent"
@@ -37,7 +37,7 @@
         android:layout_height="58dp"
         android:layout_marginTop="584dp"
         android:gravity="center"
-        android:text="TextView"
+        android:text=""
         android:textSize="25dp"
         app:icon="@drawable/addfilm"
         app:layout_constraintEnd_toEndOf="parent"
@@ -50,7 +50,7 @@
         android:layout_width="292dp"
         android:layout_height="412dp"
         android:layout_marginTop="156dp"
-        android:contentDescription="Здесь будет фильм"
+        android:contentDescription="@string/filmDesc"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.521"
         app:layout_constraintStart_toStartOf="parent"
@@ -61,7 +61,7 @@
         android:id="@+id/imageView6"
         android:layout_width="35dp"
         android:layout_height="32dp"
-        android:contentDescription="BackButton"
+        android:contentDescription="@string/backbutton"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="?attr/actionModeCloseDrawable" />
@@ -122,7 +122,7 @@
         android:layout_height="36dp"
         android:layout_marginStart="100dp"
         android:layout_marginTop="644dp"
-        android:text="TextView"
+        android:text=""
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -142,7 +142,7 @@
         android:layout_height="36dp"
         android:layout_marginStart="204dp"
         android:layout_marginTop="644dp"
-        android:text="TextView"
+        android:text=""
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -162,9 +162,17 @@
         android:layout_height="36dp"
         android:layout_marginStart="308dp"
         android:layout_marginTop="644dp"
-        android:text="TextView"
+        android:text=""
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/del"
+        android:layout_width="40dp"
+        android:layout_height="33dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/jjfj" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

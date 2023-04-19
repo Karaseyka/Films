@@ -1,18 +1,15 @@
 package com.example.films.ui.main.fragments;
 
 import android.app.AlertDialog;
-import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
-import androidx.core.app.DialogCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,8 +18,6 @@ import android.widget.EditText;
 import com.example.films.ui.main.forGroup.Group;
 import com.example.films.R;
 import com.example.adapters.Adapter;
-import com.example.films.ui.main.forUser.User;
-import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -35,7 +30,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 
 
-public class Groups extends Fragment {
+public class GroupsFragment extends Fragment {
     private DatabaseReference mdb;
     private DatabaseReference mdb1;
     private FirebaseAuth ma;
@@ -108,7 +103,10 @@ public class Groups extends Fragment {
                             assert a != null;
                             mdb.child("Users").child(user.getUid()).child("Group").child(a).setValue(a);
                             mdb.child("Group").child(a).setValue(g);
+                            mdb.child("Group").child(a).child("Users").child(ma.getCurrentUser().getUid()).setValue(ma.getCurrentUser().getUid());
                             list.add(new Group(gr, a));
+                            rv.setAdapter(ad);
+                            rv.setLayoutManager(new LinearLayoutManager((Context) getActivity()));
                             ad.notifyDataSetChanged();
                             //Log.d("dffffffffffffffffffffffff", input.getText().toString());
                             dialog.cancel();

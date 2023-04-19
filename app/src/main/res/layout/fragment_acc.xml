@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.main.fragments.Acc">
+    tools:context=".ui.main.fragments.AccFragment">
 
 
     <EditText
@@ -24,7 +24,7 @@
         android:id="@+id/textView5"
         android:layout_width="95dp"
         android:layout_height="40dp"
-        android:text="Имя"
+        android:text="@string/nameAcc"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.082"
@@ -37,7 +37,7 @@
         android:layout_width="203dp"
         android:layout_height="42dp"
         android:layout_marginStart="26dp"
-        android:text="Почта"
+        android:text="@string/email"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView9" />
 
@@ -45,7 +45,7 @@
         android:id="@+id/groups"
         android:layout_width="209dp"
         android:layout_height="27dp"
-        android:text="Дата регистрации"
+        android:text="@string/date"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.128"
@@ -81,7 +81,7 @@
         android:id="@+id/button3"
         android:layout_width="198dp"
         android:layout_height="50dp"
-        android:text="Сохранить"
+        android:text="@string/save"
         android:backgroundTint="#33CCCC"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
