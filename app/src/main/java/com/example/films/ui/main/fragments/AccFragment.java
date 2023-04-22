@@ -1,6 +1,7 @@
 package com.example.films.ui.main.fragments;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -13,6 +14,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.ChoiseActivity;
 import com.example.films.R;
 import com.example.films.ui.main.forUser.User;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -48,6 +50,15 @@ public class AccFragment extends Fragment {
         EditText et1 = (EditText) v.findViewById(R.id.textView7);
         EditText et2 = (EditText) v.findViewById(R.id.textView11);
         Button bt = (Button) v.findViewById(R.id.button3);
+        Button bt2 = (Button) v.findViewById(R.id.toChoise);
+
+        bt2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent switcher = new Intent(getContext(), ChoiseActivity.class);
+                startActivity(switcher);
+            }
+        });
 
         mdb.child("Users").orderByChild(ma.getCurrentUser().getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override

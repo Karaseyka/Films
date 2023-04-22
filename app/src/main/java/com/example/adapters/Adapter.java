@@ -33,6 +33,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.GroupHolder> {
     public GroupHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
         View view = layoutInflater.inflate(R.layout.list_item, parent, false);
+
         return new GroupHolder(view);
     }
 
@@ -56,6 +57,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.GroupHolder> {
 
         public GroupHolder(@NonNull View itemView) {
             super(itemView);
+
             tv = itemView.findViewById(R.id.name);
             tv1 = itemView.findViewById(R.id.id);
             Context context = itemView.getContext();

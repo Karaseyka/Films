@@ -13,6 +13,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.films.ui.main.forFilm.Film;
 import com.example.films.ui.main.forGroup.GroupActivity;
 import com.example.films.R;
@@ -46,17 +47,41 @@ public class AdapterFilms  extends RecyclerView.Adapter<AdapterFilms.FilmsHolder
     @Override
     public AdapterFilms.FilmsHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
-        View view = layoutInflater.inflate(R.layout.list_item_films, parent, false);
+        View view;
+        if (act == 3){
+            view = layoutInflater.inflate(R.layout.item_film_choise, parent, false);
+        } else {
+            view = layoutInflater.inflate(R.layout.list_item_films, parent, false);
+        }
         return new FilmsHolder(view);
+
     }
 
     @Override
     public void onBindViewHolder(@NonNull AdapterFilms.FilmsHolder holder, int position) {
         Film fl = film.get(position);
-        holder.tv.setText(fl.name);
-        holder.tv1.setText(fl.id);
-        Picasso.get().load(fl.url).fit()
-                .centerCrop().into(holder.iv);
+        if (act != 3) {
+            holder.tv.setText(fl.name);
+            holder.tv1.setText(fl.id);
+            Picasso.get().load(fl.url).fit()
+                    .centerCrop().into(holder.iv);
+        }
+
+        if(act == 3){
+            //TextView tv = holder.itemView.findViewById(R.id.name);
+            ImageView iv = holder.itemView.findViewById(R.id.film);
+            Glide.with(context).load(fl.url).centerCrop().into(iv);
+//            Picasso.get().load(fl.url).fit()
+//                    .centerCrop().into(iv);
+            //tv.setText(fl.name);
+
+            holder.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+
+                }
+            });
+        }
 
     }
     @Override

@@ -15,6 +15,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 
+import com.example.films.ui.main.Dec;
 import com.example.films.ui.main.forGroup.Group;
 import com.example.films.R;
 import com.example.adapters.Adapter;
@@ -67,6 +68,7 @@ public class GroupsFragment extends Fragment {
 
                             list.add(gr);
                             rv.setAdapter(ad);
+                            //rv.addItemDecoration(new Dec());
                             rv.setLayoutManager(new LinearLayoutManager((Context) getActivity()));
                             ad.notifyDataSetChanged();
                         }
