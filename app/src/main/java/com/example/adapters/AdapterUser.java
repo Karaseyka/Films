@@ -2,7 +2,6 @@ package com.example.adapters;
 
 import android.app.AlertDialog;
 import android.content.Context;
-import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,12 +15,9 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.films.R;
-import com.example.films.ui.main.forGroup.Group;
-import com.example.films.ui.main.forGroup.GroupActivity;
-import com.example.films.ui.main.forUser.User;
+import com.example.films.ui.main.group.Group;
+import com.example.films.ui.main.user.User;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
-import com.firebase.ui.database.FirebaseRecyclerOptions;
-import com.google.firebase.FirebaseOptions;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;

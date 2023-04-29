@@ -1,6 +1,4 @@
-package com.example.films.ui.main.forUser;
-
-import java.lang.reflect.Array;
+package com.example.films.ui.main.user;
 
 public class User {
     public String id, name, email, love_films, auth, reg_date;

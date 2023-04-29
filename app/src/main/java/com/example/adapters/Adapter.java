@@ -12,8 +12,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.films.ui.main.forGroup.Group;
-import com.example.films.ui.main.forGroup.GroupActivity;
+import com.example.films.ui.main.group.Group;
+import com.example.films.ui.main.group.GroupActivity;
 import com.example.films.R;
 
 import java.util.ArrayList;

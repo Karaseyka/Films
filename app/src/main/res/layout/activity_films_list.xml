@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.main.forFilm.FilmsList">
+    tools:context=".ui.main.film.FilmsList">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"

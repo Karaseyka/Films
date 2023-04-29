@@ -1,4 +1,4 @@
-package com.example.films.ui.main.forFilm;
+package com.example.films.ui.main.film;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -12,7 +12,7 @@ import android.widget.ImageView;
 
 import com.example.films.R;
 import com.example.adapters.AdapterFilms;
-import com.example.films.ui.main.forGroup.GroupActivity;
+import com.example.films.ui.main.group.GroupActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;

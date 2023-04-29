@@ -1,4 +1,4 @@
-package com.example.films.ui.main.forUser;
+package com.example.films.ui.main.user;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -11,7 +11,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.films.R;
-import com.example.films.ui.main.forGroup.Group;
+import com.example.films.ui.main.group.Group;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;

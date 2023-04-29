@@ -13,7 +13,7 @@
         android:theme="@style/Theme.Films"
         tools:targetApi="31">
         <activity
-            android:name=".ui.main.forGroup.GroupFilmsActivity"
+            android:name=".ui.main.group.GroupFilmsActivity"
             android:theme="@style/Theme.Films.NoActionBar"
             android:exported="false">
             <meta-data
@@ -21,7 +21,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".ui.main.forFilm.FilmsList"
+            android:name=".ui.main.film.FilmsList"
             android:exported="false"
             android:theme="@style/Theme.Films.NoActionBar">
             <meta-data
@@ -48,7 +48,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".ui.main.forUser.RegistrationActivity"
+            android:name=".ui.main.user.RegistrationActivity"
             android:theme="@style/Theme.Films.NoActionBar"
             android:exported="false">
             <meta-data
@@ -56,7 +56,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".ui.main.forUser.AuthActivity"
+            android:name=".ui.main.user.AuthActivity"
             android:theme="@style/Theme.Films.NoActionBar"
             android:exported="true">
             <intent-filter>
@@ -70,7 +70,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".ui.main.forGroup.GroupActivity"
+            android:name=".ui.main.group.GroupActivity"
             android:exported="false"
             android:label="@string/title_activity_group"
             android:theme="@style/Theme.Films.NoActionBar">

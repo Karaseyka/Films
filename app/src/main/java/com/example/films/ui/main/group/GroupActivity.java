@@ -1,4 +1,4 @@
-package com.example.films.ui.main.forGroup;
+package com.example.films.ui.main.group;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -11,8 +11,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.films.ui.main.forFilm.Film;
-import com.example.films.ui.main.forFilm.FilmsList;
+import com.example.films.ui.main.film.Film;
+import com.example.films.ui.main.film.FilmsList;
 import com.example.films.R;
 import com.example.films.ui.main.fragments.MainActivity;
 import com.google.firebase.auth.FirebaseAuth;

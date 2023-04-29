@@ -1,4 +1,4 @@
-package com.example.films.ui.main.forGroup;
+package com.example.films.ui.main.group;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -14,7 +14,7 @@ import android.widget.Toast;
 
 import com.example.adapters.AdapterFilms;
 import com.example.films.R;
-import com.example.films.ui.main.forFilm.Film;
+import com.example.films.ui.main.film.Film;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -48,6 +48,18 @@ public class GroupFilmsActivity extends AppCompatActivity {
             }
         });
 
+        mdb.child("Group").child(getIntent().getStringExtra("id")).child("Users").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
         mdb.child("Group").child(getIntent().getStringExtra("id")).child("GrFilms").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -60,7 +72,8 @@ public class GroupFilmsActivity extends AppCompatActivity {
 
                             Film fl = snapshot.getValue(Film.class);
 
-                            RecyclerView rv = (RecyclerView) findViewById(R.id.FilmsList) ;
+                            RecyclerView rv = (RecyclerView) findViewById(R.id.FilmsList);
+
 
                             a.add(fl);
                             ad = new AdapterFilms(GroupFilmsActivity.this, a, getIntent().getStringExtra("id"), 2);
@@ -116,4 +129,5 @@ public class GroupFilmsActivity extends AppCompatActivity {
 
         }
     };
+
 }

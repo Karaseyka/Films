@@ -1,4 +1,4 @@
-package com.example.films.ui.main.forUser;
+package com.example.films.ui.main.user;
 
 
 

@@ -1,4 +1,4 @@
-package com.example.films.ui.main.forFilm;
+package com.example.films.ui.main.film;
 
 public class Film {
 

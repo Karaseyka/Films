@@ -15,8 +15,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 
-import com.example.films.ui.main.Dec;
-import com.example.films.ui.main.forGroup.Group;
+import com.example.films.ui.main.group.Group;
 import com.example.films.R;
 import com.example.adapters.Adapter;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;

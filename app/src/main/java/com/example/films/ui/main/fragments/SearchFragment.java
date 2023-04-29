@@ -19,7 +19,7 @@ import android.widget.Spinner;
 
 import com.example.adapters.AdapterUser;
 import com.example.films.R;
-import com.example.films.ui.main.forUser.User;
+import com.example.films.ui.main.user.User;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;

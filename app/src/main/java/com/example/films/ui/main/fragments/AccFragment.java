@@ -16,7 +16,7 @@ import android.widget.Toast;
 
 import com.example.ChoiseActivity;
 import com.example.films.R;
-import com.example.films.ui.main.forUser.User;
+import com.example.films.ui.main.user.User;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
@@ -55,7 +55,7 @@ public class AccFragment extends Fragment {
         bt2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent switcher = new Intent(getContext(), ChoiseActivity.class);
+                Intent switcher = new Intent(getActivity(), ChoiseActivity.class);
                 startActivity(switcher);
             }
         });
