@@ -73,6 +73,7 @@ public class RegistrationActivity extends AppCompatActivity {
                                         mdb.child("Group").child(a).setValue(g);
                                         Intent switcher = new Intent(RegistrationActivity.this, AuthActivity.class);
                                         startActivity(switcher);
+                                        finish();
                                     } else {
                                         // If sign in fails, display a message to the user.
                                         Toast.makeText(RegistrationActivity.this, "Ошибка регистрации",

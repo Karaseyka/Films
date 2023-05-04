@@ -36,6 +36,9 @@
     <string name="save">Сохранить</string>
     <string name="myfirstgroup">   MyFirstGroup</string>
     <string name="id">id</string>
+    <string name="profile">Profile</string>
+    <string name="search">Search</string>
+    <string name="your_groups">Your Groups</string>
 
     <string-array name="searchBy">
         <item>Поиск по Почте(рекомендуется)</item>

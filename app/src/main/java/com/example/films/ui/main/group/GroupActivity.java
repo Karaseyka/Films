@@ -31,124 +31,28 @@ public class GroupActivity extends AppCompatActivity {
     ArrayList<String> liked = new ArrayList<>();
     ArrayList<String> dis = new ArrayList<>();
     ArrayList<String> ney = new ArrayList<>();
+    FirebaseAuth ma = FirebaseAuth.getInstance();
+    DatabaseReference mbd = FirebaseDatabase.getInstance().getReference();
+    //String grId = getIntent().getStringExtra("id");
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_group);
-        Button bt = (Button) findViewById(R.id.add);
-        Button bt1 = (Button) findViewById(R.id.check);
-        Button bt2 = (Button) findViewById(R.id.button4);
-        TextView tv = (TextView) findViewById(R.id.textView13);
-        TextView tv1 = (TextView) findViewById(R.id.textView12);
-        TextView tv3 = (TextView) findViewById(R.id.textView15);
-        TextView tv4 = (TextView) findViewById(R.id.text_like);
-        TextView tv5 = (TextView) findViewById(R.id.text_ney);
-        TextView tv6 = (TextView) findViewById(R.id.text_dis);
-        ImageView iv = (ImageView) findViewById(R.id.imageView5);
-        ImageView iv1 = (ImageView) findViewById(R.id.imageView6);
-        ImageView iv2 = (ImageView) findViewById(R.id.image_like);
-        ImageView iv3 = (ImageView) findViewById(R.id.image_dis);
-        ImageView iv4 = (ImageView) findViewById(R.id.image_ney);
-        ImageView del = (ImageView) findViewById(R.id.del);
         String grId = getIntent().getStringExtra("id");
-        FirebaseAuth ma;
-        ma = FirebaseAuth.getInstance();
-        DatabaseReference mbd = FirebaseDatabase.getInstance().getReference();
+        Button bt = (Button) findViewById(R.id.add); Button bt1 = (Button) findViewById(R.id.check); Button bt2 = (Button) findViewById(R.id.button4); TextView tv = (TextView) findViewById(R.id.textView13); TextView tv1 = (TextView) findViewById(R.id.textView12); TextView tv3 = (TextView) findViewById(R.id.textView15); TextView tv4 = (TextView) findViewById(R.id.text_like); TextView tv5 = (TextView) findViewById(R.id.text_ney); TextView tv6 = (TextView) findViewById(R.id.text_dis); ImageView iv = (ImageView) findViewById(R.id.imageView5); ImageView iv1 = (ImageView) findViewById(R.id.imageView6); ImageView iv2 = (ImageView) findViewById(R.id.image_like); ImageView iv3 = (ImageView) findViewById(R.id.image_dis); ImageView iv4 = (ImageView) findViewById(R.id.image_ney); ImageView del = (ImageView) findViewById(R.id.del);
+
+        Data dt = new Data();
 
         del.setOnClickListener(view -> {
-            mbd.child("Group").child(grId).child("Users").addListenerForSingleValueEvent(new ValueEventListener() {
-                @Override
-                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                    int i = 0;
-                    try {
-                        for(DataSnapshot dt: dataSnapshot.getChildren()){
-                            i += 1;
-                        }
-                        if(i <= 1){
-                            mbd.child("Group").child(grId).removeValue();
-                            mbd.child("Users").child(ma.getCurrentUser().getUid()).child("Group").child(grId).removeValue();
-                        } else{
-                            mbd.child("Users").child(ma.getCurrentUser().getUid()).child("Group").child(grId).removeValue();
-                            mbd.child("Group").child(grId).child("Users").child(ma.getCurrentUser().getUid()).removeValue();
-                        }
-                        Intent switcher = new Intent(GroupActivity.this, MainActivity.class);
-                        startActivity(switcher);
-                    }catch (Exception e){
-                        mbd.child("Group").child(grId).removeValue();
-                        mbd.child("Users").child(ma.getCurrentUser().getUid()).child("Group").child(grId).removeValue();
-                        Intent switcher = new Intent(GroupActivity.this, MainActivity.class);
-                        startActivity(switcher);
-                    }
-                }
-
-                @Override
-                public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                }
-            });
+            dt.p(grId);
+            Intent switcher = new Intent(GroupActivity.this, MainActivity.class);
+            startActivity(switcher);
+            finish();
         });
 
-        mbd.child("Group").child(grId).child("FilmOfGroup").child("Likes").addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                liked.clear();
-                try {
-                    int count = 0;
-                    for(DataSnapshot ds: dataSnapshot.getChildren()){
-                        liked.add(ds.getKey());count += 1;}
-                    tv4.setText(String.valueOf(count));
-
-                }catch (Exception e){}
-
-            }
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {}
-        });
-        mbd.child("Group").child(grId).child("FilmOfGroup").child("Dis").addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                dis.clear();
-                try {
-                    int count = 0;
-                    for(DataSnapshot ds: dataSnapshot.getChildren()){
-                        dis.add(ds.getKey());count += 1;}
-                    tv6.setText(String.valueOf(count));
-
-                }catch (Exception e){}
-
-            }
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {}
-        });
-        mbd.child("Group").child(grId).child("FilmOfGroup").child("Ney").addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                ney.clear();
-                try {
-                    int count = 0;
-                    for(DataSnapshot ds: dataSnapshot.getChildren()){
-                        ney.add(ds.getKey());count += 1;}
-                    tv5.setText(String.valueOf(count));
-
-                }catch (Exception e){}
-
-            }
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {}
-        });
-
-
-
-
-
-
-
-
-
-
-
+        p1(tv4, tv5, tv6);
 
         mbd.child("Group").child(grId).child("FilmOfGroup").child("Name").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -187,6 +91,7 @@ public class GroupActivity extends AppCompatActivity {
         iv1.setOnClickListener(view -> {
             Intent switcher = new Intent(GroupActivity.this, MainActivity.class);
             startActivity(switcher);
+            finish();
         });
         tv.setText(grId);
 
@@ -205,6 +110,7 @@ public class GroupActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent switcher = new Intent(GroupActivity.this, FilmsList.class).putExtra("id", tv.getText());
                 startActivity(switcher);
+                finish();
             }
         });
 
@@ -213,6 +119,7 @@ public class GroupActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent switcher = new Intent(GroupActivity.this, GroupFilmsActivity.class).putExtra("id", tv.getText());
                 startActivity(switcher);
+                finish();
 
             }
         });
@@ -471,5 +378,56 @@ public class GroupActivity extends AppCompatActivity {
 
         });
 
+    }
+    public void p1(TextView tv4, TextView tv5, TextView tv6){
+        String grId = getIntent().getStringExtra("id");
+        mbd.child("Group").child(grId).child("FilmOfGroup").child("Likes").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                liked.clear();
+                try {
+                    int count = 0;
+                    for(DataSnapshot ds: dataSnapshot.getChildren()){
+                        liked.add(ds.getKey());count += 1;}
+                    tv4.setText(String.valueOf(count));
+
+                }catch (Exception e){}
+
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {}
+        });
+        mbd.child("Group").child(grId).child("FilmOfGroup").child("Dis").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                dis.clear();
+                try {
+                    int count = 0;
+                    for(DataSnapshot ds: dataSnapshot.getChildren()){
+                        dis.add(ds.getKey());count += 1;}
+                    tv6.setText(String.valueOf(count));
+
+                }catch (Exception e){}
+
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {}
+        });
+        mbd.child("Group").child(grId).child("FilmOfGroup").child("Ney").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                ney.clear();
+                try {
+                    int count = 0;
+                    for(DataSnapshot ds: dataSnapshot.getChildren()){
+                        ney.add(ds.getKey());count += 1;}
+                    tv5.setText(String.valueOf(count));
+
+                }catch (Exception e){}
+
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {}
+        });
     }
 }

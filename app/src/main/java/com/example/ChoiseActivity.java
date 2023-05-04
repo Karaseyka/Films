@@ -24,6 +24,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class ChoiseActivity  extends AppCompatActivity {
     private DatabaseReference mdb;
@@ -42,37 +43,38 @@ public class ChoiseActivity  extends AppCompatActivity {
         ma = FirebaseAuth.getInstance();
         mdb = FirebaseDatabase.getInstance().getReference();
 
-        mdb.child("Users").child(ma.getCurrentUser().getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-
-                m = new ArrayList<>();
-                for(DataSnapshot i : snapshot.child("Like").getChildren()){
-                    m.add(i.getKey());
-                    Log.d("nbvcfdfghjkjhgfdfghjkjhgf", i.getKey());
-                }
-                for(DataSnapshot i : snapshot.child("Dislike").getChildren()){
-                    m.add(i.getKey());
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
+//        mdb.child("Users").child(ma.getCurrentUser().getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot snapshot) {
+//
+//
+//                for(DataSnapshot i : snapshot.child("Like").getChildren()){
+//                    m.add(i.getKey());
+//                    Log.d("nbvcfdfghjkjhgfdfghjkjhgf", i.getKey());
+//                }
+//                for(DataSnapshot i : snapshot.child("Dislike").getChildren()){
+//                    m.add(i.getKey());
+//                }
+//            }
+//
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError error) {
+//
+//            }
+//        });
 
         mdb.child("Film").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                m.add("c");
+
                 a = new ArrayList<>();
                 for (DataSnapshot ds: snapshot.getChildren()){
-                    if(!m.contains(ds.getValue(Film.class).id)) {
+                    //if(!m.contains(ds.getValue(Film.class).id)) {
                         a.add(ds.getValue(Film.class));
-                    }
+                    //}
                 }
                 RecyclerView rv = (RecyclerView) findViewById(R.id.oneByOne) ;
+                Collections.shuffle(a);
                 ad = new AdapterFilms(ChoiseActivity.this, a, "d", 3);
                 rv.setAdapter(ad);
                 rv.addItemDecoration(new Dec());

@@ -65,7 +65,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.GroupHolder> {
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Intent myintent = new Intent(context, GroupActivity.class).putExtra("id", tv1.getText());
+                    Intent myintent = new Intent(context, GroupActivity.class).putExtra("id", tv1.getText().toString());
                     context.startActivity(myintent);
                 }
             });

@@ -54,6 +54,7 @@ public class AuthActivity extends AppCompatActivity {
                                         FirebaseUser user = mAuth.getCurrentUser();
                                         Intent switcher = new Intent(AuthActivity.this, MainActivity.class);
                                         startActivity(switcher);
+                                        finish();
 
 
                                     } else {

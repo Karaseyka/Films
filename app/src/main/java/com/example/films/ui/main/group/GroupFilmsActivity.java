@@ -45,6 +45,7 @@ public class GroupFilmsActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent switcher = new Intent(GroupFilmsActivity.this, GroupActivity.class).putExtra("id", getIntent().getStringExtra("id"));
                 startActivity(switcher);
+                finish();
             }
         });
 
