@@ -26,6 +26,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
         Toolbar tb = (Toolbar) binding.myToolbar;
         setSupportActionBar(tb);
+        tb.setLogo(R.drawable.logo);
+        replaceFragment(new AccFragment());
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
