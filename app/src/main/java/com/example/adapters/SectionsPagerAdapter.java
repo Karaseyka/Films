@@ -8,7 +8,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 
-import com.example.films.ui.main.fragments.AccFragment;
+import com.example.films.ui.main.fragments.ProfileFragment;
 import com.example.films.ui.main.fragments.GroupsFragment;
 import com.example.films.R;
 import com.example.films.ui.main.fragments.SearchFragment;
@@ -34,7 +34,7 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
         // Return a PlaceholderFragment (defined as a static inner class below).
         switch (position){
             case 0:
-                return new AccFragment();
+                return new ProfileFragment();
             case 1:
                 return new SearchFragment();
             case 2:

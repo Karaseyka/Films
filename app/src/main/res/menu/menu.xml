@@ -6,11 +6,16 @@
         android:title="@string/profile" />
     <item
         android:id="@+id/search"
-        android:icon="@android:drawable/ic_menu_search"
+        android:icon="@drawable/search"
         app:showAsAction="ifRoom"
         android:title="@string/search" />
     <item
         android:id="@+id/groups"
         android:title="@string/your_groups"/>
+    <item
+        android:id="@+id/exit"
+        android:icon="@drawable/exit"
+        android:title="@string/exit"
+        app:showAsAction="always"/>
 
 </menu>

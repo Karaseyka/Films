@@ -28,7 +28,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 
-public class AccFragment extends Fragment {
+public class ProfileFragment extends Fragment {
     private DatabaseReference mdb;
     private FirebaseAuth ma;
     private boolean flag = false;
