@@ -5,16 +5,20 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.example.ChoiseActivity;
+import com.example.ChoiceActivity;
 import com.example.films.R;
 import com.example.films.ui.main.user.User;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -31,13 +35,38 @@ import com.google.firebase.database.ValueEventListener;
 public class ProfileFragment extends Fragment {
     private DatabaseReference mdb;
     private FirebaseAuth ma;
-    private boolean flag = false;
+    private static ProfileFragment instance = null;
+    private boolean uploaded = false;
+
+    public static ProfileFragment getInstance() {
+        if (instance == null) {
+            instance = new ProfileFragment();
+        }
+        return instance;
+    }
+
+    /*@Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setHasOptionsMenu(true);
+    }
+
+    @Override
+    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
+        super.onCreateOptionsMenu(menu, inflater);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        return super.onOptionsItemSelected(item);
+    }*/
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-
-        return inflater.inflate(R.layout.fragment_acc, container, false);
+        return inflater.inflate(R.layout.fragment_profile, container, false);
     }
+
     @Override
     public void onViewCreated(View v, Bundle savedInstanceState) {
         ma = FirebaseAuth.getInstance();
@@ -47,16 +76,28 @@ public class ProfileFragment extends Fragment {
         EditText et2 = (EditText) v.findViewById(R.id.textView11);
         Button bt = (Button) v.findViewById(R.id.button3);
         Button bt2 = (Button) v.findViewById(R.id.toChoise);
-        ProgressDialog dialog=new ProgressDialog(v.getContext());
+        ProgressDialog dialog = new ProgressDialog(v.getContext());
         dialog.setMessage("Подождите");
-        dialog.setCancelable(false);
+        dialog.setCancelable(true); // todo change
         dialog.setInverseBackgroundForced(false);
-        dialog.show();
+        if (!uploaded) {
+            dialog.show();
+        }
+
+
+        load(user -> {
+            et.setText(user.name);
+            et1.setText(user.email);
+            et2.setText(user.reg_date);
+            dialog.hide();
+            uploaded = true;
+        });
+
 
         bt2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent switcher = new Intent(getActivity(), ChoiseActivity.class);
+                Intent switcher = new Intent(getActivity(), ChoiceActivity.class);
                 startActivity(switcher);
             }
         });
@@ -79,25 +120,24 @@ public class ProfileFragment extends Fragment {
                         });
             }
         });
-        if(!flag) {
-            load(et, et1, et2, dialog);
-            flag = true;
-        }
-
-
-
     }
-    public void load(EditText et, EditText et1, EditText et2, ProgressDialog dialog){
+
+    @FunctionalInterface
+    interface MyAwesomeListener {
+        public void loadUser(User user);
+    }
+
+    // data layer
+    public void load(MyAwesomeListener myAwesomeListener) {
 
         mdb.child("Users").orderByChild(ma.getCurrentUser().getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 User user = snapshot.child(ma.getCurrentUser().getUid()).getValue(User.class);
                 assert user != null;
-                et.setText(user.name);
-                et1.setText(user.email);
-                et2.setText(user.reg_date);
-                dialog.hide();
+                myAwesomeListener.loadUser(user);
+
+
             }
 
             @Override

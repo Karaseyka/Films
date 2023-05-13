@@ -59,12 +59,13 @@
 
     <ImageView
         android:id="@+id/imageView6"
-        android:layout_width="35dp"
-        android:layout_height="32dp"
+        android:layout_width="33dp"
+        android:layout_height="26dp"
         android:contentDescription="@string/backbutton"
+        app:layout_constraintBottom_toTopOf="@+id/textView12"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="?attr/actionModeCloseDrawable" />
+        app:srcCompat="@drawable/arrow" />
 
     <Button
         style="?android:attr/borderlessButtonStyle"
@@ -172,7 +173,7 @@
         android:layout_height="33dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/jjfj" />
+        app:srcCompat="@drawable/leav" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

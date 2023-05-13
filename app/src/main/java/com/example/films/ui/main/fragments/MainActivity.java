@@ -1,28 +1,30 @@
 package com.example.films.ui.main.fragments;
 
-import android.content.Context;
-import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
 
+import com.example.UserInfo;
 import com.example.films.R;
 import com.example.films.databinding.ActivityMainBinding;
-import com.example.films.ui.main.user.AuthActivity;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
 
 
 public class MainActivity extends AppCompatActivity {
 
     private ActivityMainBinding binding;
-    
+
+    private UserInfo userInfo;
+    FragmentManager fragmentManager = getSupportFragmentManager();
+    NavController navController;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,42 +33,45 @@ public class MainActivity extends AppCompatActivity {
         Toolbar tb = (Toolbar) binding.myToolbar;
         setSupportActionBar(tb);
         tb.setLogo(R.drawable.logo);
-        replaceFragment(new ProfileFragment());
+
+        userInfo = new UserInfo();
+
+        //navController = Navigation.findNavController(this, R.id.fragment_container);
+
+
+       /* FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.add(R.id.fragment_container, ProfileFragment.getInstance(), "prof");
+        fragmentTransaction.commit();*/
     }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu, menu);
         return true;
     }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+        navController = Navigation.findNavController(this, R.id.fragment_container);
         switch (item.getItemId()) {
             case R.id.profile:
                 // User chose the "Settings" item, show the app settings UI...
-                replaceFragment(new ProfileFragment());
+                // replaceFragment(ProfileFragment.getInstance(), "prof");
+                //navController.popBackStack(R.id.profile, false);
+                navController.navigate(R.id.ProfileFragment);
                 return true;
 
             case R.id.search:
                 // User chose the "Favorite" action, mark the current item
-                // as a favorite...
-                replaceFragment(new SearchFragment());
+                navController.navigate(R.id.SearchFragment);
                 return true;
             case R.id.groups:
                 // User chose the "Favorite" action, mark the current item
                 // as a favorite...
-                replaceFragment(new GroupsFragment());
+                navController.navigate(R.id.GroupsFragment);
                 return true;
             case R.id.exit:
-                SharedPreferences sp;
-                sp = MainActivity.this.getSharedPreferences("Auth_info", Context.MODE_PRIVATE);
-                SharedPreferences.Editor ed = sp.edit();
-                ed.putString("auth_info", "404");
-                ed.apply();
-                Intent switcher = new Intent(MainActivity.this, AuthActivity.class);
-                startActivity(switcher);
-                finish();
-
-
+                return userInfo.signOut();
             default:
                 // If we got here, the user's action was not recognized.
                 // Invoke the superclass to handle it.
@@ -74,10 +79,18 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private void replaceFragment(Fragment fragment) {
-        FragmentManager fragmentManager = getSupportFragmentManager();
+    /*private void replaceFragment(Fragment fragment, String mess) {
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.replace(R.id.fragment_container, fragment);
+        Fragment fg = fragmentManager.findFragmentByTag(mess);
+        if(fg == null) {
+            fragmentTransaction.add(R.id.fragment_container, fragment, mess);
+            Log.d("sgafsftdsdhjdhtghjndkvk", "if");
+        }else{
+            fragmentTransaction.remove(fg);
+            fragmentTransaction.add(R.id.fragment_container, fg, mess);
+            Log.d("jbasijgblkasbg;au", "else");
+        }
         fragmentTransaction.commit();
-    }
+    }*/
+
 }

@@ -37,6 +37,13 @@ public class GroupsFragment extends Fragment {
 
     ArrayList<Group> list;
     Adapter ad;
+    private static GroupsFragment instance = null;
+    public static GroupsFragment getInstance() {
+        if (instance == null) {
+            instance = new GroupsFragment();
+        }
+        return instance;
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

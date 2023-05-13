@@ -1,6 +1,5 @@
 package com.example;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
@@ -15,7 +14,6 @@ import com.example.adapters.AdapterFilms;
 import com.example.films.R;
 import com.example.films.ui.main.Dec;
 import com.example.films.ui.main.film.Film;
-import com.example.films.ui.main.fragments.MainActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -26,7 +24,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.Collections;
 
-public class ChoiseActivity  extends AppCompatActivity {
+public class ChoiceActivity extends AppCompatActivity {
     private DatabaseReference mdb;
     private FirebaseAuth ma;
     ArrayList <Film> a;
@@ -75,11 +73,11 @@ public class ChoiseActivity  extends AppCompatActivity {
                 }
                 RecyclerView rv = (RecyclerView) findViewById(R.id.oneByOne) ;
                 Collections.shuffle(a);
-                ad = new AdapterFilms(ChoiseActivity.this, a, "d", 3);
+                ad = new AdapterFilms(ChoiceActivity.this, a, "d", 3);
                 rv.setAdapter(ad);
                 rv.addItemDecoration(new Dec());
                 new ItemTouchHelper(simpleItemTouchCallback).attachToRecyclerView(rv);
-                rv.setLayoutManager(new LinearLayoutManager(ChoiseActivity.this) {
+                rv.setLayoutManager(new LinearLayoutManager(ChoiceActivity.this) {
                     @Override
                     public boolean canScrollVertically() {
                         return false;

@@ -22,7 +22,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".ui.main.film.FilmsList"
+            android:name=".ui.main.film.FilmsListActivity"
             android:exported="false"
             android:theme="@style/Theme.Films.NoActionBar">
             <meta-data
@@ -31,7 +31,7 @@
         </activity>
 
         <activity
-            android:name="com.example.ChoiseActivity"
+            android:name="com.example.ChoiceActivity"
             android:exported="false"
             android:theme="@style/Theme.Films.NoActionBar">
             <meta-data

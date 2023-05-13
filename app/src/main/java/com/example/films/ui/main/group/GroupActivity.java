@@ -12,7 +12,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.films.ui.main.film.Film;
-import com.example.films.ui.main.film.FilmsList;
+import com.example.films.ui.main.film.FilmsListActivity;
 import com.example.films.R;
 import com.example.films.ui.main.fragments.MainActivity;
 import com.google.firebase.auth.FirebaseAuth;
@@ -41,7 +41,21 @@ public class GroupActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_group);
         String grId = getIntent().getStringExtra("id");
-        Button bt = (Button) findViewById(R.id.add); Button bt1 = (Button) findViewById(R.id.check); Button bt2 = (Button) findViewById(R.id.button4); TextView tv = (TextView) findViewById(R.id.textView13); TextView tv1 = (TextView) findViewById(R.id.textView12); TextView tv3 = (TextView) findViewById(R.id.textView15); TextView tv4 = (TextView) findViewById(R.id.text_like); TextView tv5 = (TextView) findViewById(R.id.text_ney); TextView tv6 = (TextView) findViewById(R.id.text_dis); ImageView iv = (ImageView) findViewById(R.id.imageView5); ImageView iv1 = (ImageView) findViewById(R.id.imageView6); ImageView iv2 = (ImageView) findViewById(R.id.image_like); ImageView iv3 = (ImageView) findViewById(R.id.image_dis); ImageView iv4 = (ImageView) findViewById(R.id.image_ney); ImageView del = (ImageView) findViewById(R.id.del);
+        Button bt = (Button) findViewById(R.id.add);
+        Button bt1 = (Button) findViewById(R.id.check);
+        Button bt2 = (Button) findViewById(R.id.button4);
+        TextView tv = (TextView) findViewById(R.id.textView13);
+        TextView tv1 = (TextView) findViewById(R.id.textView12);
+        TextView tv3 = (TextView) findViewById(R.id.textView15);
+        TextView tv4 = (TextView) findViewById(R.id.text_like);
+        TextView tv5 = (TextView) findViewById(R.id.text_ney);
+        TextView tv6 = (TextView) findViewById(R.id.text_dis);
+        ImageView iv = (ImageView) findViewById(R.id.imageView5);
+        ImageView iv1 = (ImageView) findViewById(R.id.imageView6);
+        ImageView iv2 = (ImageView) findViewById(R.id.image_like);
+        ImageView iv3 = (ImageView) findViewById(R.id.image_dis);
+        ImageView iv4 = (ImageView) findViewById(R.id.image_ney);
+        ImageView del = (ImageView) findViewById(R.id.del);
 
         Data dt = new Data();
 
@@ -105,13 +119,10 @@ public class GroupActivity extends AppCompatActivity {
             public void onCancelled(@NonNull DatabaseError error) {}
         });
 
-        bt.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent switcher = new Intent(GroupActivity.this, FilmsList.class).putExtra("id", tv.getText());
-                startActivity(switcher);
-                finish();
-            }
+        bt.setOnClickListener(view -> {
+            Intent switcher = new Intent(GroupActivity.this, FilmsListActivity.class).putExtra("id", tv.getText());
+            startActivity(switcher);
+            finish();
         });
 
         bt1.setOnClickListener(new View.OnClickListener() {

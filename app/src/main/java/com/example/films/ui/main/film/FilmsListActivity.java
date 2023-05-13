@@ -22,7 +22,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
-public class FilmsList extends AppCompatActivity {
+public class FilmsListActivity extends AppCompatActivity {
     private DatabaseReference mdb;
     private FirebaseAuth ma;
 
@@ -36,7 +36,7 @@ public class FilmsList extends AppCompatActivity {
         iv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent switcher = new Intent(FilmsList.this, GroupActivity.class).putExtra("id", getIntent().getStringExtra("id"));
+                Intent switcher = new Intent(FilmsListActivity.this, GroupActivity.class).putExtra("id", getIntent().getStringExtra("id"));
                 startActivity(switcher);
                 finish();
             }
@@ -50,9 +50,9 @@ public class FilmsList extends AppCompatActivity {
                     a.add(ds.getValue(Film.class));
                 }
                 RecyclerView rv = (RecyclerView) findViewById(R.id.FilmsList) ;
-                AdapterFilms ad = new AdapterFilms(FilmsList.this, a, getIntent().getStringExtra("id"), 1);
+                AdapterFilms ad = new AdapterFilms(FilmsListActivity.this, a, getIntent().getStringExtra("id"), 1);
                 rv.setAdapter(ad);
-                rv.setLayoutManager(new LinearLayoutManager(FilmsList.this));
+                rv.setLayoutManager(new LinearLayoutManager(FilmsListActivity.this));
                 ad.notifyDataSetChanged();
             }
             @Override

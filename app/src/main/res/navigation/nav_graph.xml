@@ -3,26 +3,37 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/FirstFragment">
+    app:startDestination="@id/ProfileFragment">
 
     <fragment
-        android:id="@+id/FirstFragment"
-        android:name="com.example.films.FirstFragment"
-        android:label="@string/first_fragment_label"
-        tools:layout="@layout/fragment_first">
+        android:id="@+id/ProfileFragment"
+        android:name="com.example.films.ui.main.fragments.ProfileFragment"
+        tools:layout="@layout/fragment_profile"
+        android:label="@string/profile_fragment_label">
 
         <action
-            android:id="@+id/action_FirstFragment_to_SecondFragment"
-            app:destination="@id/SecondFragment" />
+            android:id="@+id/action_ProfileFragment_to_SearchFragment"
+            app:destination="@id/SearchFragment" />
     </fragment>
     <fragment
-        android:id="@+id/SecondFragment"
-        android:name="com.example.films.SecondFragment"
-        android:label="@string/second_fragment_label"
-        tools:layout="@layout/fragment_second">
+        android:id="@+id/SearchFragment"
+        android:name="com.example.films.ui.main.fragments.SearchFragment"
+        tools:layout="@layout/fragment_search"
+        android:label="@string/groups_fragment_label">
 
         <action
-            android:id="@+id/action_SecondFragment_to_FirstFragment"
-            app:destination="@id/FirstFragment" />
+            android:id="@+id/action_SearchFragment_to_ProfileFragment"
+            app:destination="@id/ProfileFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/GroupsFragment"
+        android:name="com.example.films.ui.main.fragments.GroupsFragment"
+        tools:layout="@layout/fragment_groups"
+        android:label="@string/groups_fragment_label">
+
+        <action
+            android:id="@+id/action_GroupsFragment_to_SearchFragment"
+            app:destination="@id/SearchFragment" />
     </fragment>
 </navigation>
