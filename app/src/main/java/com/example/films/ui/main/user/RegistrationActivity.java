@@ -5,13 +5,19 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.films.R;
+import com.example.films.ui.main.film.Film;
 import com.example.films.ui.main.group.Group;
+import com.example.web.ApiService;
+import com.example.web.Docs;
+import com.example.web.Kinopoisk;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -23,8 +29,16 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
+
 public class RegistrationActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,16 +48,6 @@ public class RegistrationActivity extends AppCompatActivity {
         EditText et2 = (EditText) findViewById(R.id.editTextTextPassword2);
         EditText et3 = (EditText) findViewById(R.id.editTextTextPassword3);
         DatabaseReference mdb1 = FirebaseDatabase.getInstance().getReference();
-//        String a = mdb1.child("Film").push().getKey();
-//        mdb1.child("Film").child(a).setValue(new Film("Время", "https://firebasestorage.googleapis.com/v0/b/films-5a8bb.appspot.com/o/1629795-2124006.jpeg?alt=media&token=967f17a7-5352-499e-9b91-23d095baf1da", "Aboba", a));
-//        a = mdb1.child("Film").push().getKey();
-//        mdb1.child("Film").child(a).setValue(new Film("Во всё тяжкое", "https://firebasestorage.googleapis.com/v0/b/films-5a8bb.appspot.com/o/33340317-1124423.jpg?alt=media&token=00d18a74-97bc-4f1d-9eef-99c4ce61b616", "Aboba", a));
-//        a = mdb1.child("Film").push().getKey();
-//        mdb1.child("Film").child(a).setValue(new Film("1+1", "https://firebasestorage.googleapis.com/v0/b/films-5a8bb.appspot.com/o/RKWiodWYDEU.jpg?alt=media&token=96cffaaf-0cb1-438c-977f-15096242acbd", "Aboba", a));
-//        a = mdb1.child("Film").push().getKey();
-//        mdb1.child("Film").child(a).setValue(new Film("Титаник", "https://firebasestorage.googleapis.com/v0/b/films-5a8bb.appspot.com/o/c7e53efbe083c67fb76bb137928f1815.jpg?alt=media&token=b28a3f6a-7fad-4dd4-8654-9467348ebc8d", "Aboba", a));
-//        a = mdb1.child("Film").push().getKey();
-//        mdb1.child("Film").child(a).setValue(new Film("Операция Ы", "https://firebasestorage.googleapis.com/v0/b/films-5a8bb.appspot.com/o/orig.jfif?alt=media&token=c25e55e9-c6af-4bc9-abde-73a11cd1926c", "Aboba", a));
         mAuth = FirebaseAuth.getInstance();
         Button bt = (Button) findViewById(R.id.button2);
         bt.setOnClickListener(new View.OnClickListener() {
@@ -84,6 +88,7 @@ public class RegistrationActivity extends AppCompatActivity {
                 }
             }
         });
+
 
     }
 

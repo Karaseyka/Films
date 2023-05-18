@@ -41,35 +41,14 @@ public class ChoiceActivity extends AppCompatActivity {
         ma = FirebaseAuth.getInstance();
         mdb = FirebaseDatabase.getInstance().getReference();
 
-//        mdb.child("Users").child(ma.getCurrentUser().getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(@NonNull DataSnapshot snapshot) {
-//
-//
-//                for(DataSnapshot i : snapshot.child("Like").getChildren()){
-//                    m.add(i.getKey());
-//                    Log.d("nbvcfdfghjkjhgfdfghjkjhgf", i.getKey());
-//                }
-//                for(DataSnapshot i : snapshot.child("Dislike").getChildren()){
-//                    m.add(i.getKey());
-//                }
-//            }
-//
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError error) {
-//
-//            }
-//        });
-
         mdb.child("Film").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
                 a = new ArrayList<>();
                 for (DataSnapshot ds: snapshot.getChildren()){
-                    //if(!m.contains(ds.getValue(Film.class).id)) {
-                        a.add(ds.getValue(Film.class));
-                    //}
+                    a.add(ds.getValue(Film.class));
+
                 }
                 RecyclerView rv = (RecyclerView) findViewById(R.id.oneByOne) ;
                 Collections.shuffle(a);
@@ -81,8 +60,7 @@ public class ChoiceActivity extends AppCompatActivity {
                     @Override
                     public boolean canScrollVertically() {
                         return false;
-                    }
-                });
+                    }});
                 rv.setNestedScrollingEnabled(false);
                 ad.notifyDataSetChanged();
             }
@@ -119,24 +97,24 @@ public class ChoiceActivity extends AppCompatActivity {
 
         }
     };
-    public void p(){
-        mdb.child("Users").child(ma.getCurrentUser().getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                m = new ArrayList<>();
-                for(DataSnapshot i : snapshot.child("Like").getChildren()){
-                    m.add(i.getKey());
-                    Log.d("nbvcfdfghjkjhgfdfghjkjhgf", i.getKey());
-                }
-                for(DataSnapshot i : snapshot.child("Dislike").getChildren()){
-                    m.add(i.getKey());
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
-    }
+//    public void p(){
+//        mdb.child("Users").child(ma.getCurrentUser().getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot snapshot) {
+//                m = new ArrayList<>();
+//                for(DataSnapshot i : snapshot.child("Like").getChildren()){
+//                    m.add(i.getKey());
+//                    Log.d("nbvcfdfghjkjhgfdfghjkjhgf", i.getKey());
+//                }
+//                for(DataSnapshot i : snapshot.child("Dislike").getChildren()){
+//                    m.add(i.getKey());
+//                }
+//            }
+//
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError error) {
+//
+//            }
+//        });
+//    }
 }

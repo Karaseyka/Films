@@ -38,13 +38,13 @@ public class AuthActivity extends AppCompatActivity {
         TextView tw = (TextView) findViewById(R.id.textView2);
         EditText et1 = (EditText) findViewById(R.id.editText);
         EditText et2 = (EditText) findViewById(R.id.editTextTextPassword);
-        if (!sp.getString("auth_info", "404").equals("404")){
-            Intent switcher = new Intent(AuthActivity.this, MainActivity.class);
-            startActivity(switcher);
-            finish();
-        } else {
-            Log.d("vbgnm", sp.getString("auth_info", "404"));
-        }
+//        if (!sp.getString("auth_info", "404").equals("404")){
+//            Intent switcher = new Intent(AuthActivity.this, MainActivity.class);
+//            startActivity(switcher);
+//            finish();
+//        } else {
+//            Log.d("vbgnm", sp.getString("auth_info", "404"));
+//        }
 
 
         tw.setOnClickListener(new View.OnClickListener() {

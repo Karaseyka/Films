@@ -14,6 +14,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.FragmentManager;
 import androidx.navigation.NavController;
+import androidx.navigation.NavOptions;
 import androidx.navigation.Navigation;
 
 
@@ -53,23 +54,38 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         navController = Navigation.findNavController(this, R.id.fragment_container);
+
+
+
         switch (item.getItemId()) {
             case R.id.profile:
                 // User chose the "Settings" item, show the app settings UI...
                 // replaceFragment(ProfileFragment.getInstance(), "prof");
                 //navController.popBackStack(R.id.profile, false);
-                navController.navigate(R.id.ProfileFragment);
+                //navController.navigate(R.id.ProfileFragment);
+
+                if ( ! navController.popBackStack(R.id.ProfileFragment, false)) {
+                    //navController.navigate(R.id.ProfileFragment);
+                    navController.navigate(R.id.ProfileFragment, null, new NavOptions.Builder().setLaunchSingleTop(true).build());
+                }
+                navController.popBackStack(R.id.ProfileFragment, false);
                 return true;
 
             case R.id.search:
                 // User chose the "Favorite" action, mark the current item
-                navController.navigate(R.id.SearchFragment);
-                return true;
+                if ( ! navController.popBackStack(R.id.SearchFragment, false)) {
+                    //navController.navigate(R.id.ProfileFragment);
+                    navController.navigate(R.id.SearchFragment, null, new NavOptions.Builder().setLaunchSingleTop(true).build());
+                }
+                navController.popBackStack(R.id.SearchFragment, false);                return true;
             case R.id.groups:
                 // User chose the "Favorite" action, mark the current item
                 // as a favorite...
-                navController.navigate(R.id.GroupsFragment);
-                return true;
+                if ( ! navController.popBackStack(R.id.GroupsFragment, false)) {
+                    //navController.navigate(R.id.ProfileFragment);
+                    navController.navigate(R.id.GroupsFragment, null, new NavOptions.Builder().setLaunchSingleTop(true).build());
+                }
+                navController.popBackStack(R.id.GroupsFragment, false);                return true;
             case R.id.exit:
                 return userInfo.signOut();
             default:
