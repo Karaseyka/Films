@@ -71,12 +71,15 @@ public class GroupsFragment extends Fragment {
                         public void onDataChange(@NonNull DataSnapshot bSnapshot) {
 
                             Group gr = bSnapshot.getValue(Group.class);
+                            if(gr != null) {
+                                list.add(gr);
 
-                            list.add(gr);
-                            rv.setAdapter(ad);
-                            //rv.addItemDecoration(new Dec());
-                            rv.setLayoutManager(new LinearLayoutManager((Context) getActivity()));
-                            ad.notifyDataSetChanged();
+                                rv.setAdapter(ad);
+                                //rv.addItemDecoration(new Dec());
+                                rv.setLayoutManager(new LinearLayoutManager((Context) getActivity()));
+                                ad.notifyDataSetChanged();
+                            }
+
                         }
 
                         @Override

@@ -17,6 +17,7 @@ import com.bumptech.glide.Glide;
 import com.example.films.ui.main.film.Film;
 import com.example.films.ui.main.group.GroupActivity;
 import com.example.films.R;
+import com.example.films.ui.main.user.User;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -117,7 +118,7 @@ public class AdapterFilms  extends RecyclerView.Adapter<AdapterFilms.FilmsHolder
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
                     for(DataSnapshot i: snapshot.getChildren()){
-                        mdb.child("Users").child(i.getValue().toString()).child("Like").child(fl.id).addListenerForSingleValueEvent(new ValueEventListener() {
+                        mdb.child("Users").child(i.getKey()).child("Like").child(fl.id).addListenerForSingleValueEvent(new ValueEventListener() {
                             @Override
                             public void onDataChange(@NonNull DataSnapshot snapshot) {
                                 if(snapshot.exists()){
@@ -203,7 +204,7 @@ public class AdapterFilms  extends RecyclerView.Adapter<AdapterFilms.FilmsHolder
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
                     for(DataSnapshot i: snapshot.getChildren()){
-                        mdb.child("Users").child(i.getValue().toString()).child("Like").child(fl.id).addListenerForSingleValueEvent(new ValueEventListener() {
+                        mdb.child("Users").child(i.getKey()).child("Like").child(fl.id).addListenerForSingleValueEvent(new ValueEventListener() {
                             @Override
                             public void onDataChange(@NonNull DataSnapshot snapshot) {
                                 if(snapshot.exists()){

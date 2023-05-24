@@ -56,6 +56,16 @@ public class GroupActivity extends AppCompatActivity {
         ImageView iv3 = (ImageView) findViewById(R.id.image_dis);
         ImageView iv4 = (ImageView) findViewById(R.id.image_ney);
         ImageView del = (ImageView) findViewById(R.id.del);
+        ImageView info = (ImageView) findViewById(R.id.info);
+        ImageView scr = (ImageView) findViewById(R.id.scr);
+        info.setOnClickListener(v -> {
+            if(scr.getVisibility() == View.GONE) {
+                scr.setVisibility(View.VISIBLE);
+            } else{
+                scr.setVisibility(View.GONE);
+            }
+        });
+
 
         Data dt = new Data();
 

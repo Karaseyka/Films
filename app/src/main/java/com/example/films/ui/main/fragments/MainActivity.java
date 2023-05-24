@@ -1,5 +1,6 @@
 package com.example.films.ui.main.fragments;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -9,6 +10,8 @@ import android.view.MenuItem;
 import com.example.UserInfo;
 import com.example.films.R;
 import com.example.films.databinding.ActivityMainBinding;
+import com.instabug.library.Instabug;
+import com.instabug.library.invocation.InstabugInvocationEvent;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -30,10 +33,16 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityMainBinding.inflate(getLayoutInflater());
+        new Instabug.Builder(this.getApplication(), "2a06840a480c1624e4bdbc6d6a888488")
+                .setInvocationEvents(InstabugInvocationEvent.SHAKE, InstabugInvocationEvent.SCREENSHOT)
+                .build();
         setContentView(binding.getRoot());
         Toolbar tb = (Toolbar) binding.myToolbar;
         setSupportActionBar(tb);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
         tb.setLogo(R.drawable.logo);
+        tb.setTitle("");
+        tb.setSubtitle("");
 
         userInfo = new UserInfo();
 
@@ -87,7 +96,7 @@ public class MainActivity extends AppCompatActivity {
                 }
                 navController.popBackStack(R.id.GroupsFragment, false);                return true;
             case R.id.exit:
-                return userInfo.signOut();
+                return userInfo.signOut(MainActivity.this, (Activity) this);
             default:
                 // If we got here, the user's action was not recognized.
                 // Invoke the superclass to handle it.

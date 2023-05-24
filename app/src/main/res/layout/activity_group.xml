@@ -1,63 +1,131 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FFFFFF"
+    android:orientation="vertical"
     tools:context=".ui.main.group.GroupActivity">
-
-    <TextView
-        android:id="@+id/textView12"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="56dp"
-        android:layout_marginTop="32dp"
-        android:text=""
-        android:textSize="34dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-
-    <TextView
-        android:id="@+id/textView13"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="88dp"
-        android:text=""
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.011"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/textView15"
-        android:layout_width="291dp"
-        android:layout_height="58dp"
-        android:layout_marginTop="584dp"
-        android:gravity="center"
-        android:text=""
-        android:textSize="25dp"
-        app:icon="@drawable/addfilm"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.525"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
+        android:layout_height="match_parent"
+        android:background="#FFFFFF">
     <ImageView
-        android:id="@+id/imageView5"
-        android:layout_width="292dp"
-        android:layout_height="412dp"
-        android:layout_marginTop="156dp"
-        android:contentDescription="@string/filmDesc"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.521"
-        app:layout_constraintStart_toStartOf="parent"
+        android:id="@+id/info"
+        android:layout_width="40dp"
+        android:layout_height="33dp"
+        app:layout_constraintEnd_toStartOf="@+id/del"
+        app:layout_constraintStart_toEndOf="@+id/imageView6"
         app:layout_constraintTop_toTopOf="parent"
-        tools:srcCompat="@tools:sample/avatars" />
+        app:srcCompat="@drawable/infobut" />
 
-    <ImageView
+
+        <TextView
+            android:id="@+id/textView12"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:layout_marginTop="32dp"
+            android:text=""
+            android:textSize="34dp"
+            app:layout_constraintBottom_toTopOf="@+id/imageView5"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.041" />
+
+        <TextView
+            android:id="@+id/textView13"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="88dp"
+            android:text=""
+            app:layout_constraintBottom_toTopOf="@+id/imageView5"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.011"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/imageView5"
+            android:layout_width="292dp"
+            android:layout_height="412dp"
+            android:layout_marginTop="16dp"
+            android:contentDescription="@string/filmDesc"
+            app:layout_constraintBottom_toTopOf="@+id/textView15"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.47"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="1.0"
+            tools:srcCompat="@tools:sample/avatars" />
+
+        <TextView
+            android:id="@+id/textView15"
+            android:layout_width="291dp"
+            android:layout_height="58dp"
+            android:gravity="center"
+            android:text=""
+            android:textSize="25dp"
+            app:icon="@drawable/addfilm"
+            app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.475"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <LinearLayout
+            android:id="@+id/linearLayout2"
+            android:layout_width="298dp"
+            android:layout_height="53dp"
+
+
+            android:layout_marginBottom="72dp"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toTopOf="@+id/check"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.504"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <ImageView
+                android:id="@+id/image_like"
+                android:layout_width="39dp"
+                android:layout_height="37dp"
+                app:srcCompat="@drawable/img" />
+
+            <TextView
+                android:id="@+id/text_like"
+                android:layout_width="61dp"
+                android:layout_height="36dp"
+                android:text="" />
+
+            <ImageView
+                android:id="@+id/image_ney"
+                android:layout_width="38dp"
+                android:layout_height="36dp"
+                app:srcCompat="@drawable/img_1" />
+
+            <TextView
+                android:id="@+id/text_ney"
+                android:layout_width="61dp"
+                android:layout_height="36dp"
+                android:text="" />
+
+            <ImageView
+                android:id="@+id/image_dis"
+                android:layout_width="38dp"
+                android:layout_height="36dp"
+                app:srcCompat="@drawable/img_2" />
+
+            <TextView
+                android:id="@+id/text_dis"
+                android:layout_width="61dp"
+                android:layout_height="36dp"
+                android:text="" />
+        </LinearLayout>
+
+        <ImageView
         android:id="@+id/imageView6"
         android:layout_width="33dp"
         android:layout_height="26dp"
@@ -67,107 +135,43 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/arrow" />
 
-    <Button
-        style="?android:attr/borderlessButtonStyle"
-        android:id="@+id/button4"
-        android:layout_width="72dp"
-        android:layout_height="72dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginBottom="16dp"
-        android:layout_weight="1"
-        android:background="@drawable/random"
-        android:gravity="top"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        <Button
+            android:id="@+id/button4"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_width="72dp"
+            android:layout_height="72dp"
 
-    <Button
-        style="?android:attr/borderlessButtonStyle"
-        android:id="@+id/check"
-        android:layout_width="72dp"
-        android:layout_height="72dp"
-        android:layout_marginBottom="16dp"
-        android:layout_weight="1"
-        android:background="@drawable/check"
-        android:gravity="top"
-        android:layout_marginEnd="2dp"
-        android:layout_marginLeft="160dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="@id/button4"
-        app:layout_constraintEnd_toEndOf="@+id/add"/>
 
-    <Button
-        style="?android:attr/borderlessButtonStyle"
-        android:id="@+id/add"
-        android:layout_width="72dp"
-        android:layout_height="72dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="16dp"
-        android:layout_weight="1"
-        android:background="@drawable/addfilm"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+            android:layout_marginStart="4dp"
+            android:background="@drawable/random"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
 
-    <ImageView
-        android:id="@+id/image_like"
-        android:layout_width="39dp"
-        android:layout_height="37dp"
-        android:layout_marginStart="60dp"
-        android:layout_marginTop="644dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/img" />
+        <Button
+            android:id="@+id/check"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_width="72dp"
+            android:layout_height="72dp"
+            android:layout_weight="1"
+            android:background="@drawable/check"
+            android:paddingTop="80dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/add"
+            app:layout_constraintStart_toEndOf="@+id/button4" />
 
-    <TextView
-        android:id="@+id/text_like"
-        android:layout_width="61dp"
-        android:layout_height="36dp"
-        android:layout_marginStart="100dp"
-        android:layout_marginTop="644dp"
-        android:text=""
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        <Button
+            android:id="@+id/add"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_width="72dp"
+            android:layout_height="72dp"
 
-    <ImageView
-        android:id="@+id/image_ney"
-        android:layout_width="38dp"
-        android:layout_height="36dp"
-        android:layout_marginStart="164dp"
-        android:layout_marginTop="644dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/img_1" />
+            android:layout_marginEnd="4dp"
+            android:layout_weight="1"
+            android:background="@drawable/addfilm"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
 
-    <TextView
-        android:id="@+id/text_ney"
-        android:layout_width="61dp"
-        android:layout_height="36dp"
-        android:layout_marginStart="204dp"
-        android:layout_marginTop="644dp"
-        android:text=""
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <ImageView
-        android:id="@+id/image_dis"
-        android:layout_width="38dp"
-        android:layout_height="36dp"
-        android:layout_marginStart="268dp"
-        android:layout_marginTop="644dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/img_2" />
-
-    <TextView
-        android:id="@+id/text_dis"
-        android:layout_width="61dp"
-        android:layout_height="36dp"
-        android:layout_marginStart="308dp"
-        android:layout_marginTop="644dp"
-        android:text=""
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <ImageView
+        <ImageView
         android:id="@+id/del"
         android:layout_width="40dp"
         android:layout_height="33dp"
@@ -175,5 +179,17 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/leav" />
 
+    <ImageView
+        android:id="@+id/scr"
+        android:layout_width="match_parent"
+        android:layout_height="876dp"
+        android:visibility="gone"
+        android:layout_marginTop="4dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/info"
+        app:srcCompat="@drawable/info" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>
