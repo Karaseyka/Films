@@ -1,0 +1,49 @@
+<resources>
+    <string name="app_name">Films</string>
+    <string name="textview">TextView</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="tab_text_1">Profil</string>
+    <string name="tab_text_2">Suche</string>
+    <string name="tab_text_3">Gruppen</string>
+    <!--: Entfernen oder ändern Sie diesen Platzhaltertext -->
+    <string name="hello_blank_fragment">Hallo leeres Fragment</string>
+    <string name="title_activity_group">Gruppenaktivität</string>
+    <!-- Strings, die für Fragmente zur Navigation verwendet werden -->
+    <string name="profile_fragment_label">Erstes Fragment</string>
+    <string name="groups_fragment_label">Zweites Fragment</string>
+    <string name="next">Weiter</string>
+    <string name="previous">Zurück</string>
+    <string name="auth">Authentifizierung</string>
+    <string name="login">E-Mail</string>
+    <string name="password">Passwort</string>
+    <string name="make_acc">Profil erstellen</string>
+    <string name="forgetPass">Passwort vergessen?</string>
+    <string name="come">Anmelden</string>
+    <string name="filmDesc">Hier wird der Film sein</string>
+    <string name="backbutton">Zurück-Button</string>
+    <string name="reg">Registung</string>
+    <string name="okk">Akzeptieren</string>
+    <string name="name">Name</string>
+    <string name="putName">Geben Sie Ihren Namen ein</string>
+    <string name="e_mail">E-Mail</string>
+    <string name="mail">Mail</string>
+    <string name="brainPass">Geben Sie Ihr Passwort ein</string>
+    <string name="passwordReg">Passwort</string>
+    <string name="passOneMore">Geben Sie Ihr Passwort erneut ein</string>
+    <string name="nameAcc">Name</string>
+    <string name="email">E-Mail</string>
+    <string name="date">Registrierungsdatum</string>
+    <string name="save">Speichern</string>
+    <string name="myfirstgroup">Meine erste Gruppe</string>
+    <string name="id">ID</string>
+    <string name="profile">Profil</string>
+    <string name="search">Nach Freunden suchen</string>
+    <string name="your_groups">Ihre Gruppen</string>
+    <string name="exit">Beenden</string>
+
+    <string-array name="searchBy">
+        <item>Nach E-Mail suchen (empfohlen)</item>
+        <item>Nach Name suchen</item>
+        <item>Nach ID suchen</item>
+    </string-array>
+</resources>

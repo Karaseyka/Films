@@ -1,0 +1,49 @@
+<resources>
+    <string name="app_name">Films</string>
+    <string name="textview">TextView</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="tab_text_1">Profile</string>
+    <string name="tab_text_2">Search</string>
+    <string name="tab_text_3">Groups</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_group">GroupActivity</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="profile_fragment_label">First Fragment</string>
+    <string name="groups_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+    <string name="auth">Authentication</string>
+    <string name="login">Email</string>
+    <string name="password">Password</string>
+    <string name="make_acc">Create profile</string>
+    <string name="forgetPass">Forgot password?</string>
+    <string name="come">Come</string>
+    <string name="filmDesc">Here will be film</string>
+    <string name="backbutton">BackButton</string>
+    <string name="reg">Registration</string>
+    <string name="okk">Accept</string>
+    <string name="name">Name</string>
+    <string name="putName">Put your name</string>
+    <string name="e_mail">e-mail</string>
+    <string name="mail">Mail</string>
+    <string name="brainPass">Put your password</string>
+    <string name="passwordReg">Password</string>
+    <string name="passOneMore">Put your password again</string>
+    <string name="nameAcc">Name</string>
+    <string name="email">e-mail</string>
+    <string name="date">Registration date</string>
+    <string name="save">Save</string>
+    <string name="myfirstgroup">   MyFirstGroup</string>
+    <string name="id">id</string>
+    <string name="profile">Profile</string>
+    <string name="search">Search for friends</string>
+    <string name="your_groups">Your Groups</string>
+    <string name="exit">Exit</string>
+
+    <string-array name="searchBy">
+        <item>Search by email(recommended)</item>
+        <item>Search by name</item>
+        <item>Search by Id</item>
+    </string-array>
+</resources>
