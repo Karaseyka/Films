@@ -86,6 +86,7 @@ public class AdapterUser extends RecyclerView.Adapter<AdapterUser.UserHolder> {
                         for (DataSnapshot postSnapshot: snapshot.getChildren()) {
                             String gr1 = postSnapshot.getValue().toString();
                             assert gr1 != null;
+                            Log.d("jvuohygoygygh", gr1);
                             mdb1.child("Group").child(gr1).addListenerForSingleValueEvent(new ValueEventListener() {
                                 @Override
                                 public void onDataChange(@NonNull DataSnapshot bSnapshot) {

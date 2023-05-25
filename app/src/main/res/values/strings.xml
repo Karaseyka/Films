@@ -14,8 +14,8 @@
     <string name="next">Next</string>
     <string name="previous">Previous</string>
     <string name="auth">Авторизация</string>
-    <string name="login">Login</string>
-    <string name="password">Password</string>
+    <string name="login">Почта</string>
+    <string name="password">Пароль</string>
     <string name="make_acc">Создать аккаунт</string>
     <string name="forgetPass">Забыли пароль?</string>
     <string name="come">Войти</string>
@@ -28,7 +28,7 @@
     <string name="e_mail">e-mail</string>
     <string name="mail">Mail</string>
     <string name="brainPass">Придумайте пароль</string>
-    <string name="passwordReg">Password</string>
+    <string name="passwordReg">Пароль</string>
     <string name="passOneMore">Введите пароль ещё раз</string>
     <string name="nameAcc">Имя</string>
     <string name="email">Почта</string>
@@ -36,9 +36,9 @@
     <string name="save">Сохранить</string>
     <string name="myfirstgroup">   MyFirstGroup</string>
     <string name="id">id</string>
-    <string name="profile">Profile</string>
-    <string name="search">Search</string>
-    <string name="your_groups">Your Groups</string>
+    <string name="profile">Профиль</string>
+    <string name="search">Поиск друзей</string>
+    <string name="your_groups">Твои группы</string>
     <string name="exit">Exit</string>
 
     <string-array name="searchBy">

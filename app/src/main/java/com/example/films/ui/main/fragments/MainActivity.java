@@ -77,7 +77,9 @@ public class MainActivity extends AppCompatActivity {
                     //navController.navigate(R.id.ProfileFragment);
                     navController.navigate(R.id.ProfileFragment, null, new NavOptions.Builder().setLaunchSingleTop(true).build());
                 }
-                navController.popBackStack(R.id.ProfileFragment, false);
+                else {
+                    navController.popBackStack(R.id.ProfileFragment, false);
+                }
                 return true;
 
             case R.id.search:
@@ -86,15 +88,20 @@ public class MainActivity extends AppCompatActivity {
                     //navController.navigate(R.id.ProfileFragment);
                     navController.navigate(R.id.SearchFragment, null, new NavOptions.Builder().setLaunchSingleTop(true).build());
                 }
-                navController.popBackStack(R.id.SearchFragment, false);                return true;
+                else {
+                    navController.popBackStack(R.id.SearchFragment, false);
+                }
+                return true;
             case R.id.groups:
                 // User chose the "Favorite" action, mark the current item
                 // as a favorite...
                 if ( ! navController.popBackStack(R.id.GroupsFragment, false)) {
                     //navController.navigate(R.id.ProfileFragment);
                     navController.navigate(R.id.GroupsFragment, null, new NavOptions.Builder().setLaunchSingleTop(true).build());
+                } else {
+                    navController.popBackStack(R.id.GroupsFragment, false);
                 }
-                navController.popBackStack(R.id.GroupsFragment, false);                return true;
+                return true;
             case R.id.exit:
                 return userInfo.signOut(MainActivity.this, (Activity) this);
             default:

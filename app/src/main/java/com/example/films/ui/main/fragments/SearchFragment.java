@@ -37,14 +37,6 @@ public class SearchFragment extends Fragment {
     public ArrayList<User> list;
     public ArrayList<String> nt;
     public ArrayList<String> spin;
-    private static SearchFragment instance = null;
-    public static SearchFragment getInstance() {
-        if (instance == null) {
-            instance = new SearchFragment();
-        }
-        return instance;
-    }
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
