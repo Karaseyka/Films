@@ -29,16 +29,17 @@ public class Request implements Runnable {
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         ApiService sv = retrofit.create(ApiService.class);
-
         sv.getFilms().enqueue(new Callback<Docs>() {
             @Override
             public void onResponse(@NonNull Call<Docs> call, @NonNull Response<Docs> response) {
-                assert response.body() != null;
                 if(response.body().getMovies().size() != 0 && response.body().getMovies() != null) {
-
                     for (int i = 0; i < response.body().getMovies().size(); i++) {
                         String a = mdb1.child("Film").push().getKey();
-                        mdb1.child("Film").child(a).setValue(new Film(response.body().getMovies().get(i).getName(), response.body().getMovies().get(i).getPoster().getUrl(), "Aboba", a));
+                        mdb1.child("Film")
+                                .child(a)
+                                .setValue(new Film(response.body().getMovies().get(i).getName(),
+                                        response.body().getMovies().get(i).getPoster().getUrl(),
+                                        "Aboba", a));
                     }
                 }
             }

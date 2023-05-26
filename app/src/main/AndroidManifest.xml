@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
-    <uses-permission android:name="android.permission.INTERNET"></uses-permission>
+
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:name="com.example.MyApp"
         android:allowBackup="true"
@@ -14,9 +16,12 @@
         android:theme="@style/Theme.AppCompat.Light.NoActionBar"
         tools:targetApi="s">
         <activity
+            android:name=".ui.main.group.UsersActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.main.group.GroupFilmsActivity"
-            android:theme="@style/Theme.Films.NoActionBar"
-            android:exported="false">
+            android:exported="false"
+            android:theme="@style/Theme.Films.NoActionBar">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
@@ -29,7 +34,6 @@
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
-
         <activity
             android:name="com.example.ChoiceActivity"
             android:exported="false"
@@ -38,7 +42,6 @@
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
-
         <activity
             android:name=".ui.main.fragments.MainActivity"
             android:exported="false"
@@ -50,25 +53,24 @@
         </activity>
         <activity
             android:name=".ui.main.user.RegistrationActivity"
-            android:theme="@style/Theme.Films.NoActionBar"
-            android:exported="false">
+            android:exported="false"
+            android:theme="@style/Theme.Films.NoActionBar">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
             android:name=".ui.main.user.AuthActivity"
-            android:theme="@style/Theme.Films.NoActionBar"
-            android:exported="false">
+            android:exported="false"
+            android:theme="@style/Theme.Films.NoActionBar">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
-
         <activity
             android:name="com.example.Splash.SplashActivity"
-            android:theme="@style/Theme.Films.NoActionBar"
-            android:exported="true">
+            android:exported="true"
+            android:theme="@style/Theme.Films.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -79,7 +81,6 @@
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
-
         <activity
             android:name=".ui.main.group.GroupActivity"
             android:exported="false"

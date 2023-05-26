@@ -32,13 +32,17 @@ public class AdapterUser extends RecyclerView.Adapter<AdapterUser.UserHolder> {
     ArrayList<User> user;
     ArrayList<Group> list = new ArrayList<>();
     AdapterGrDialog ad;
+    int act = 0;
 
     public AdapterUser(Context context, ArrayList<User> user){
         this.context = context;
         this.user = user;
-
     }
-
+    public AdapterUser(Context context, ArrayList<User> user, int act){
+        this.context = context;
+        this.user = user;
+        this.act = act;
+    }
 
     @NonNull
     @Override
@@ -53,6 +57,9 @@ public class AdapterUser extends RecyclerView.Adapter<AdapterUser.UserHolder> {
         User us = user.get(position);
         holder.tv.setText(us.name);
         holder.tv1.setText(us.id);
+        if(act == 1){
+            holder.bt.setVisibility(View.GONE);
+        }
         holder.bt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

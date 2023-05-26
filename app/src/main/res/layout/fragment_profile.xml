@@ -110,7 +110,7 @@
             android:id="@+id/toChoise"
             android:layout_width="218dp"
             android:layout_height="51dp"
-            android:text="выбрать фильм"
+            android:text="@string/choose_film"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

@@ -40,6 +40,7 @@
     <string name="search">Поиск друзей</string>
     <string name="your_groups">Твои группы</string>
     <string name="exit">Exit</string>
+    <string name="choose_film">выбрать фильмы</string>
 
     <string-array name="searchBy">
         <item>Поиск по Почте(рекомендуется)</item>

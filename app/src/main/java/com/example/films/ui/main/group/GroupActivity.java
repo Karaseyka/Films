@@ -57,7 +57,14 @@ public class GroupActivity extends AppCompatActivity {
         ImageView iv4 = (ImageView) findViewById(R.id.image_ney);
         ImageView del = (ImageView) findViewById(R.id.del);
         ImageView info = (ImageView) findViewById(R.id.info);
+        ImageView users = (ImageView) findViewById(R.id.group);
         ImageView scr = (ImageView) findViewById(R.id.scr);
+        users.setOnClickListener(v -> {
+            Intent switcher = new Intent(GroupActivity.this, UsersActivity.class).putExtra("id", grId);
+            startActivity(switcher);
+            finish();
+        });
+
         info.setOnClickListener(v -> {
             if(scr.getVisibility() == View.GONE) {
                 scr.setVisibility(View.VISIBLE);
@@ -177,8 +184,14 @@ public class GroupActivity extends AppCompatActivity {
                                  iv3.setVisibility(View.VISIBLE);
                                  iv4.setVisibility(View.VISIBLE);
                                  tv4.setVisibility(View.VISIBLE);
+                                 mbd.child("Group").child(grId).child("FilmOfGroup").child("Likes").removeValue();
+                                 mbd.child("Group").child(grId).child("FilmOfGroup").child("Ney").removeValue();
+                                 mbd.child("Group").child(grId).child("FilmOfGroup").child("Dis").removeValue();
+                                 tv4.setText("0");
                                  tv5.setVisibility(View.VISIBLE);
+                                 tv5.setText("0");
                                  tv6.setVisibility(View.VISIBLE);
+                                 tv6.setText("0");
                              } else {
                                  Toast.makeText(GroupActivity.this, "Ой, кажется вы не выбрали фильмы", Toast.LENGTH_LONG).show();
                              }

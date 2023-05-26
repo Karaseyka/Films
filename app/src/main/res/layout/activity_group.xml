@@ -12,15 +12,27 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#FFFFFF">
-    <ImageView
-        android:id="@+id/info"
-        android:layout_width="40dp"
-        android:layout_height="33dp"
-        app:layout_constraintEnd_toStartOf="@+id/del"
-        app:layout_constraintStart_toEndOf="@+id/imageView6"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/infobut" />
 
+
+        <ImageView
+            android:id="@+id/group"
+            android:layout_width="40dp"
+            android:layout_height="33dp"
+            app:layout_constraintEnd_toStartOf="@+id/del"
+            app:layout_constraintHorizontal_bias="0.791"
+            app:layout_constraintStart_toEndOf="@+id/imageView6"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/group" />
+
+        <ImageView
+            android:id="@+id/info"
+            android:layout_width="40dp"
+            android:layout_height="33dp"
+            app:layout_constraintEnd_toStartOf="@+id/del"
+            app:layout_constraintHorizontal_bias="0.248"
+            app:layout_constraintStart_toEndOf="@+id/imageView6"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/infobut" />
 
         <TextView
             android:id="@+id/textView12"

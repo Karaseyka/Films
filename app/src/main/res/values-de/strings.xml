@@ -40,6 +40,7 @@
     <string name="search">Nach Freunden suchen</string>
     <string name="your_groups">Ihre Gruppen</string>
     <string name="exit">Beenden</string>
+    <string name="choose_film">Wähle Sie Filme</string>
 
     <string-array name="searchBy">
         <item>Nach E-Mail suchen (empfohlen)</item>

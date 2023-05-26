@@ -68,45 +68,37 @@ public class MainActivity extends AppCompatActivity {
 
         switch (item.getItemId()) {
             case R.id.profile:
-                // User chose the "Settings" item, show the app settings UI...
-                // replaceFragment(ProfileFragment.getInstance(), "prof");
-                //navController.popBackStack(R.id.profile, false);
-                //navController.navigate(R.id.ProfileFragment);
-
                 if ( ! navController.popBackStack(R.id.ProfileFragment, false)) {
                     //navController.navigate(R.id.ProfileFragment);
                     navController.navigate(R.id.ProfileFragment, null, new NavOptions.Builder().setLaunchSingleTop(true).build());
                 }
-                else {
-                    navController.popBackStack(R.id.ProfileFragment, false);
-                }
+                navController.popBackStack(R.id.ProfileFragment, false);
+
                 return true;
 
             case R.id.search:
-                // User chose the "Favorite" action, mark the current item
                 if ( ! navController.popBackStack(R.id.SearchFragment, false)) {
                     //navController.navigate(R.id.ProfileFragment);
                     navController.navigate(R.id.SearchFragment, null, new NavOptions.Builder().setLaunchSingleTop(true).build());
                 }
-                else {
-                    navController.popBackStack(R.id.SearchFragment, false);
-                }
+                navController.popBackStack(R.id.SearchFragment, false);
+
+
+
                 return true;
             case R.id.groups:
-                // User chose the "Favorite" action, mark the current item
-                // as a favorite...
                 if ( ! navController.popBackStack(R.id.GroupsFragment, false)) {
                     //navController.navigate(R.id.ProfileFragment);
                     navController.navigate(R.id.GroupsFragment, null, new NavOptions.Builder().setLaunchSingleTop(true).build());
-                } else {
-                    navController.popBackStack(R.id.GroupsFragment, false);
                 }
+                navController.popBackStack(R.id.GroupsFragment, false);
+
+
+
                 return true;
             case R.id.exit:
                 return userInfo.signOut(MainActivity.this, (Activity) this);
             default:
-                // If we got here, the user's action was not recognized.
-                // Invoke the superclass to handle it.
                 return super.onOptionsItemSelected(item);
         }
     }

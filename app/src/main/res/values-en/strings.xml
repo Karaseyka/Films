@@ -40,6 +40,7 @@
     <string name="search">Search for friends</string>
     <string name="your_groups">Your Groups</string>
     <string name="exit">Exit</string>
+    <string name="choose_film">Choose films</string>
 
     <string-array name="searchBy">
         <item>Search by email(recommended)</item>
